@@ -4,43 +4,48 @@ A reusable, production-oriented Flutter and Dart foundation for **Android and iO
 
 > Build it right. Keep it clean. Make it last.
 
-This repository is a starter kit, not a finished consumer app. Its purpose is to provide a small, coherent foundation that can be branded and configured for multiple independent mobile products without editing shared Core infrastructure or the Design System.
+This repository is a starter kit, not a finished consumer app. It provides a coherent foundation that can be branded and configured for multiple independent mobile products without editing shared Core infrastructure or the Design System.
 
-## Product boundaries
+## Fixed product baseline
 
-- Platforms: Android and iOS only. No web or desktop targets.
-- Languages: Arabic and English, including correct RTL/LTR behavior.
-- Appearance: System, Light, and Dark preferences.
-- Navigation: GoRouter.
-- State management: Riverpod 3, used manually without generators.
-- UI foundation: Forui, integrated deliberately with Flutter platform behavior.
-- Architecture: pragmatic feature-first; add layers only where they establish a real boundary.
-- Code generation: prohibited, except Flutter's official gen-l10n localization generation.
-- No Freezed, build_runner, json_serializable, or generated Riverpod providers.
+- Flutter and Dart; Android + iOS only.
+- Arabic + English, with RTL/LTR support.
+- Light + Dark themes, with System preference.
+- Feature-First architecture, applying SOLID and separation of concerns pragmatically.
+- GoRouter for navigation; Riverpod for state management.
+- Centralized custom Design System.
+- Code generation prohibited, except Flutter's official `gen-l10n`.
+- Freezed, build_runner, json_serializable, and generated Riverpod providers prohibited.
+
+A foundational decision may change only through explicit review and an accepted ADR. See [Engineering Constitution](CLAUDE_FINAL.md).
 
 ## Engineering principles
 
-- Prefer evidence, explicit decisions, and verified behavior over assumptions.
-- Optimize for maintainability, accessibility, reliability, security, and performance.
-- Avoid unnecessary packages, abstractions, configuration switches, placeholder features, and duplicated sources of truth.
-- Keep branding and environment configuration separate.
-- Keep optional product capabilities independently removable.
-- Do not claim a build, test, or platform validation passed without recorded evidence.
+- Think before coding; define scope, acceptance criteria, and failure cases.
+- Prefer the smallest maintainable solution that solves a real problem.
+- Keep shared decisions centralized without collapsing separate responsibilities into one file or module.
+- Prevent circular dependencies, feature coupling, duplicated styles, hidden state, and unnecessary abstractions.
+- Review security, privacy, accessibility, localization, performance, platform behavior, and reliability according to feature risk.
+- Treat tests and CI evidence as the source of truth; documentation is not proof of implementation.
+- Update documentation and project status when meaningful behavior or decisions change.
 
 ## Repository guide
 
-- [Engineering Constitution](CLAUDE_FINAL.md) — locked product and engineering baseline.
-- [Architecture](docs/ARCHITECTURE.md) — boundaries and dependency direction.
-- [Design System](docs/DESIGN_SYSTEM.md) — visual, theme, and motion principles.
-- [Development](docs/DEVELOPMENT.md) — local workflow and contribution rules.
-- [Dependencies](docs/DEPENDENCIES.md) — package policy and verified starting snapshot.
-- [Project Status](docs/PROJECT_STATUS.md) — implementation and verification status.
-- [Quality Checklist](docs/QUALITY_CHECKLIST.md) — acceptance and review gates.
+- [Architecture](docs/architecture/README.md) — boundaries, dependency rules, and feature-first structure.
+- [Design System](docs/design-system/README.md) — tokens, components, themes, patterns, and motion.
+- [Engineering Standards](docs/standards/README.md) — coding, naming, SOLID, dependency, and development rules.
+- [Testing and Definition of Done](docs/testing/README.md) — feature acceptance and product acceptance.
+- [Security and Privacy](docs/security/README.md) — security baseline and threat review.
+- [Platform Engineering](docs/platform/README.md) — Android/iOS configuration and validation limits.
+- [Architecture Decisions](docs/decisions/) — accepted ADRs and rationale.
+- [Project Status](docs/PROJECT_STATUS.md) — implementation progress and verified evidence.
+- [Changelog](CHANGELOG.md) — notable repository changes.
+- [Engineering Constitution](CLAUDE_FINAL.md) — locked requirements and long-term constraints.
 
 ## Current status
 
-The repository has been initialized and its engineering foundation is being established. A document or decision in this repository is not evidence that the corresponding feature has been implemented or tested. See [Project Status](docs/PROJECT_STATUS.md).
+The starter foundation is under active implementation. See [Project Status](docs/PROJECT_STATUS.md). A documented requirement is not considered implemented until code and verification evidence exist.
 
 ## License
 
-License selection is intentionally pending. Do not assume this project is open for unrestricted reuse until a license is added.
+License selection is intentionally pending. Do not assume unrestricted reuse until a license is added.

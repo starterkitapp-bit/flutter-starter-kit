@@ -4,48 +4,36 @@
 **Repository:** starterkitapp-bit/flutter-starter-kit  
 **Default branch:** main
 
-## Verified repository state
+## Verified implementation
 
-- [x] Public GitHub repository and engineering constitution committed.
-- [x] FVM SDK pin committed (.fvmrc: Flutter 3.47.9).
-- [x] Dependency graph resolves under the pinned SDK; pubspec.lock is committed.
-- [x] Flutter app entry point, Riverpod ProviderScope, GoRouter home/settings routes, and Forui root integration committed.
-- [x] Android and iOS native project scaffolds committed.
-- [x] Android minimum SDK configured to API 24.
-- [x] iOS deployment target configured to 15.0.
-- [x] Central spacing, radius, and motion tokens implemented.
-- [x] Shared AppSection layout component implemented and used by the settings screen.
-- [x] Central Forui neutral mobile Light/Dark theme selection implemented.
-- [x] English and Arabic ARB resources and official Flutter gen-l10n committed.
-- [x] Arabic RTL, English LTR, and English fallback for unsupported locales covered by widget tests.
-- [x] System/Light/Dark and System/English/Arabic settings UI implemented and persisted through SharedPreferencesAsync.
-- [x] Settings preferences load before runApp with recovery to System defaults on read failure.
-- [x] Reduced-motion scope observes MediaQuery disableAnimations and platform accessibility feature changes.
-- [x] Centralized selection haptics gracefully handle unsupported platform channels.
-- [x] Shared AppAnimatedSwitcher fade transition implemented with reduced-motion-aware duration.
-- [x] Latest quality workflow passed localization generation, formatting, analyzer, and all tests (run 41895664453).
-- [x] Latest Android workflow passed localization generation, formatting, analyzer, tests, and debug APK build after haptics (run 41895845304).
-- [ ] iOS build executed on macOS/Xcode.
-
-## Latest inspected CI evidence
-
-- [Quality checks after the haptics test correction](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41895664453): passed dependency resolution, gen-l10n, formatting, dart analyze, and tests.
-- [Android debug APK after the haptics implementation](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41895845304): passed dependency resolution, gen-l10n, formatting, analysis, tests, and Android APK build.
-
-iOS compilation has not been run because it requires macOS and Xcode.
+- [x] Flutter/Dart foundation with FVM pin 3.47.9 and committed dependency lockfile.
+- [x] Android and iOS native project scaffolds; Android min API 24 and iOS deployment target 15.0.
+- [x] Riverpod root, GoRouter home/settings routes, and Forui root integration.
+- [x] Central spacing, radius, and motion tokens; shared AppSection.
+- [x] Forui neutral Light/Dark theme selection.
+- [x] Arabic/English ARB resources and official gen-l10n.
+- [x] Arabic RTL, English LTR, unsupported-locale fallback, and widget tests.
+- [x] System/Light/Dark and System/English/Arabic settings, persisted through SharedPreferencesAsync.
+- [x] Startup settings load before runApp with safe System defaults on read failure.
+- [x] Reduced-motion scope, centralized haptics, and reduced-motion-aware AppAnimatedSwitcher.
+- [x] Transport-independent Failure taxonomy for network, timeout, auth/permission, validation, conflict, rate limit, server, cancellation, and unknown cases.
+- [x] Latest quality workflow passed dependency resolution, localization generation, formatting, analyzer, and tests (run [41920274854](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41920274854)).
+- [x] Android debug APK build passed on the earlier scaffold/settings/haptics baseline (run [41916417491](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41916417491)).
+- [ ] Android APK build rerun after the Failure taxonomy addition.
+- [ ] iOS build on macOS/Xcode.
 
 ## Phase tracking
 
 | Phase | Scope | Status |
 |---|---|---|
-| 0 | SDK pin, dependency audit, lints, structure, config | Foundation committed; quality CI and Android debug APK build pass |
-| 1 | Design system, Forui, themes, brand config | Spacing/radius/motion tokens, Forui Light/Dark selection, and AppSection implemented; semantic color/typography tokens and brand configuration remain |
-| 2 | Arabic/English localization and RTL | ARB/gen-l10n, runtime language selection, persistence, RTL/LTR, and English fallback implemented |
-| 3 | Components, motion, haptics, reduced motion | Motion tokens, reduced-motion scope, haptics, AppSection, and AppAnimatedSwitcher implemented and covered by tests; broader component set remains |
-| 4 | Gallery and accessibility validation | Not started |
-| 5 | Bootstrap, splash, navigation | Settings load before runApp with recovery; home/settings routes exist; custom splash and deep-link validation remain |
-| 6 | Core errors/network/logging/storage/lifecycle | App-specific settings persistence exists; reusable core infrastructure remains |
-| 7 | Settings/onboarding | Theme and language settings implemented; onboarding remains optional/not started |
+| 0 | SDK, dependencies, lints, structure, CI | Foundation and quality CI pass; Android debug APK previously verified |
+| 1 | Design System, themes, brand config | Core tokens, Forui Light/Dark, and AppSection exist; semantic app color/typography extensions and brand config remain |
+| 2 | Arabic/English, RTL, fonts | ARB/gen-l10n, runtime selection, persistence, RTL/LTR, fallback implemented; licensed bundled fonts remain |
+| 3 | Components, motion, haptics | AppSection, AppAnimatedSwitcher, reduced-motion scope, and haptics implemented; broader component library remains |
+| 4 | Gallery and accessibility | Not started |
+| 5 | Bootstrap, splash, navigation | Settings load before runApp and home/settings routes exist; custom splash/deep-link validation remain |
+| 6 | Core infrastructure | Failure taxonomy implemented and tested; Dio client, logging, reusable storage, lifecycle remain |
+| 7 | Settings/onboarding | Theme/language settings implemented; onboarding remains optional |
 | 8 | Optional authentication | Not started |
 | 9 | App template/init workflow, flavors, recipes | Not started |
 | 10 | Reference feature | Not started |
@@ -53,12 +41,13 @@ iOS compilation has not been run because it requires macOS and Xcode.
 
 ## Verification boundaries
 
-All repository edits and CI execution have been performed through GitHub; no files or commands were run on the user's device. Linux CI verifies Dart and Android debug builds. It does not establish iOS build readiness; iOS verification still requires a macOS/Xcode runner.
+All repository edits and CI execution are performed through GitHub; no files or commands have been run on the user's device. The latest quality run verifies Dart formatting, analysis, and tests for the Failure taxonomy. Android debug APK evidence predates that addition and must be refreshed. iOS compilation has not been run; it requires macOS and Xcode.
 
-The generated starter bundle identifier is com.starterkitapp.mobilestarterkit. The future app initialization workflow must replace it with each consuming app's own identifier.
+The current scaffold identifier is com.starterkitapp.mobilestarterkit. The future app initialization workflow must replace it with each consuming app's own identifier.
 
-## Next engineering actions
+## Next actions
 
-1. Finish the minimal shared design-system primitives and accessibility checks.
-2. Build the reusable core error taxonomy and Dio networking boundary with focused tests.
-3. Continue bootstrap/splash refinement, CI hardening, and remaining phases.
+1. Complete design-system foundations and accessibility coverage.
+2. Implement Dio networking, safe logging, and centralized transport-to-failure mapping with focused tests.
+3. Re-run Android debug build after the core changes; add iOS CI on macOS when available.
+4. Continue bootstrap, platform, documentation, and reusable app initialization work.

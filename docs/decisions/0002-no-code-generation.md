@@ -9,7 +9,7 @@ The starter should remain understandable and maintainable without unnecessary ge
 
 ## Decision
 
-Do not add Freezed, build_runner, json_serializable, or generated Riverpod providers. Write models, serialization, and providers manually. The sole exception is Flutter's official gen-l10n localization generation from ARB files.
+Do not add Freezed, build_runner, json_serializable, generated Riverpod providers, or custom code-generation tooling. Write models, serialization, and providers manually. The sole exception is Flutter's official gen-l10n localization generation from ARB files.
 
 ## Consequences
 

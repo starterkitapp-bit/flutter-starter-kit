@@ -19,6 +19,8 @@ The starter must be reusable across independent mobile apps while keeping its fo
 - Forui as primary UI component foundation.
 - Feature-first organization with selective layering.
 - No code generation except official Flutter gen-l10n.
+- Centralized custom Design System, with Forui as the component/theme foundation.
+- SOLID and separation of concerns applied pragmatically.
 
 ## Consequences
 
@@ -26,4 +28,4 @@ Platform configuration, brand configuration, app environment, navigation, and sh
 
 ## Revisit when
 
-A platform requirement changes, an SDK/security issue requires an upgrade, or measured product needs invalidate a selected foundation dependency.
+A platform requirement changes, an SDK/security issue requires an upgrade, or measured product needs invalidate a selected foundation dependency. Changes require explicit review and an updated ADR.
