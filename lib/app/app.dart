@@ -25,8 +25,8 @@ class StarterKitApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
       locale: locale ?? settings.locale,
-      theme: ThemeData(brightness: Brightness.light, useMaterial3: true),
-      darkTheme: ThemeData(brightness: Brightness.dark, useMaterial3: true),
+      theme: AppTheme.materialForBrightness(Brightness.light),
+      darkTheme: AppTheme.materialForBrightness(Brightness.dark),
       themeMode: settings.themeMode,
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
