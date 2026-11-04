@@ -2,7 +2,7 @@
 
 ## Candidate baseline checked on 2026-11-04
 
-The selected package versions below are published stable releases on pub.dev. The minimum SDK metadata was checked against the package version pages/changelogs. This is not yet a successful joint dependency resolution: the repository still needs `flutter pub get` under the pinned SDK and a committed `pubspec.lock`.
+The selected package versions below are published stable releases on pub.dev. The minimum SDK metadata was checked against the package version pages/changelogs. GitHub Actions subsequently confirmed that `flutter pub get` resolves this declared graph under Flutter 3.47.9 (run 41882875527). The generated `pubspec.lock` was not persisted from that ephemeral runner, so the repository still needs a committed lockfile.
 
 | Package | Selected constraint | Minimum SDK evidence |
 |---|---:|---|
@@ -15,7 +15,7 @@ The selected package versions below are published stable releases on pub.dev. Th
 | very_good_analysis | ^11.0.0 | Dart 3.13 |
 | mocktail | ^1.0.5 | Dart 2.12 |
 
-Flutter 3.47.9 bundles Dart 3.13.7. The pinned SDK therefore meets the published Dart minimums listed above. Joint resolution, transitive dependency compatibility, platform builds, and analyzer compatibility remain unverified until run.
+Flutter 3.47.9 bundles Dart 3.13.7. The pinned SDK therefore meets the published Dart minimums listed above. Joint dependency resolution is verified for the CI run noted above. Transitive dependency behavior beyond resolution, analyzer compatibility, tests, and platform builds remain unverified.
 
 ## Dependency rules
 
