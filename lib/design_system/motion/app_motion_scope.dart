@@ -24,7 +24,7 @@ class _AppMotionScopeState extends State<AppMotionScope>
   bool get _platformRequestsReducedMotion {
     final features = WidgetsBinding.instance.platformDispatcher
         .accessibilityFeatures;
-    return MediaQuery.disableAnimationsOf(context) || features.reduceMotion;
+    return (MediaQuery.maybeDisableAnimationsOf(context) ?? false) || features.reduceMotion;
   }
 
   @override
@@ -61,7 +61,7 @@ class _AppMotionScopeState extends State<AppMotionScope>
 }
 
 class _AppMotionPreferences extends InheritedWidget {
-  const _AppMotionPreferences({required this.reduceMotion, required super.child});
+  const({required this.reduceMotion, required super.child});
 
   final bool reduceMotion;
 

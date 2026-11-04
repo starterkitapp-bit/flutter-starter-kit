@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:starter_kit/design_system/tokens/app_motion.dart';
 import 'package:starter_kit/design_system/motion/app_motion_scope.dart';
+import 'package:starter_kit/design_system/tokens/app_motion.dart';
 
 void main() {
   testWidgets('reduced motion removes custom transition duration', (

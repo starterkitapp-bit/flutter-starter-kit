@@ -19,7 +19,7 @@ abstract final class AppMotion {
   /// Whether non-essential motion should be removed or simplified.
   static bool shouldReduceMotion(BuildContext context) =>
       AppMotionScope.maybeReduceMotionOf(context) ??
-      (MediaQuery.disableAnimationsOf(context) ||
+      ((MediaQuery.maybeDisableAnimationsOf(context) ?? false) ||
           WidgetsBinding.instance.platformDispatcher.accessibilityFeatures
               .reduceMotion);
 
