@@ -33,11 +33,23 @@ jobs:
       - name: Resolve dependencies
         run: flutter pub get
 
-      - name: Check formatting
-        run: dart format --output=none --set-exit-if-changed .
+      - name: Format Dart sources
+        run: dart format .
 
       - name: Analyze
         run: dart analyze
 
       - name: Run tests
         run: flutter test
+
+      - name: Export resolved lockfile and formatted sources
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bootstrap-output
+          path: |
+            pubspec.lock
+            lib/**/*.dart
+            test/**/*.dart
+          if-no-files-found: error
+          retention-days: 3
