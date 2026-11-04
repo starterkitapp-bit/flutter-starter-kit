@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:starter_kit/app/app_settings_controller.dart';
 import 'package:starter_kit/app/localization/generated/app_localizations.dart';
 import 'package:starter_kit/design_system/components/app_section.dart';
+import 'package:starter_kit/design_system/feedback/app_haptics.dart';
 import 'package:starter_kit/design_system/tokens/app_spacing.dart';
 
 /// Allows users to choose their appearance and language preferences.
@@ -113,6 +114,7 @@ class SettingsPage extends ConsumerWidget {
   }
 
   Future<void> _save(Future<void> Function() update) async {
+    await AppHaptics.selection();
     try {
       await update();
     } catch (error, stackTrace) {
