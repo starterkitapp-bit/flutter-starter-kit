@@ -61,7 +61,7 @@ class _AppMotionScopeState extends State<AppMotionScope>
 }
 
 class _AppMotionPreferences extends InheritedWidget {
-  const({required this.reduceMotion, required super.child});
+  const new({required this.reduceMotion, required super.child});
 
   final bool reduceMotion;
 
