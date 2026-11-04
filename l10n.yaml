@@ -5,3 +5,4 @@ output-class: AppLocalizations
 output-dir: lib/app/localization/generated
 synthetic-package: false
 nullable-getter: false
+preferred-supported-locales: [en, ar]

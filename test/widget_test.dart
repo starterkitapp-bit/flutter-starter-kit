@@ -32,4 +32,14 @@ void main() {
       findsOneWidget,
     );
   });
+
+  testWidgets('unsupported locale falls back to English', (tester) async {
+    await tester.pumpWidget(
+      const ProviderScope(child: StarterKitApp(locale: Locale('fr'))),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Flutter Starter Kit'), findsOneWidget);
+    expect(find.text('حزمة Flutter الأساسية'), findsNothing);
+  });
 }

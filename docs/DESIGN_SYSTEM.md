@@ -27,7 +27,7 @@ Forui is the primary component system. Use documented theme/widget APIs and expl
 
 ## Localization and direction
 
-English and Arabic message resources live in `lib/app/localization/arb/`; Flutter's official `gen-l10n` generates the typed localization API into `lib/app/localization/generated/`. The root app uses the generated supported locales and delegates. Flutter derives text direction from the active locale, so Arabic uses RTL and English uses LTR. User-selectable, persisted language preference is a separate settings/bootstrap responsibility and remains pending.
+English and Arabic message resources live in `lib/app/localization/arb/`; Flutter's official `gen-l10n` generates the typed localization API into `lib/app/localization/generated/`. English is the deliberate fallback for unsupported device locales; Arabic uses RTL and English uses LTR. User-selectable, persisted language preference is a separate settings/bootstrap responsibility and remains pending.
 
 ## Branding and typography
 
