@@ -1,0 +1,78 @@
+name: Generate mobile platform projects
+
+on:
+  workflow_run:
+    workflows:
+      - Flutter quality
+    types:
+      - completed
+
+permissions:
+  contents: write
+
+concurrency:
+  group: native-scaffold-main
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up pinned Flutter SDK
+        uses: subosito/flutter-action@v2.23.0
+        with:
+          flutter-version-file: .fvmrc
+          channel: stable
+          cache: true
+
+      - name: Generate Android and iOS native projects
+        run: |
+          if [ -d android ] && [ -d ios ]; then
+            echo "Both native platform directories already exist; nothing to generate."
+            exit 0
+          fi
+
+          flutter create \
+            --no-pub \
+            --platforms=android,ios \
+            --org com.starterkitapp \
+            --project-name mobilestarterkit \
+            "$RUNNER_TEMP/native-scaffold"
+
+          cp -R "$RUNNER_TEMP/native-scaffold/android" ./android
+          cp -R "$RUNNER_TEMP/native-scaffold/ios" ./ios
+          cp "$RUNNER_TEMP/native-scaffold/.metadata" ./.metadata
+
+          grep -q 'minSdk = flutter.minSdkVersion' android/app/build.gradle.kts
+          sed -i 's/minSdk = flutter.minSdkVersion/minSdk = 24/' android/app/build.gradle.kts
+
+          grep -q 'IPHONEOS_DEPLOYMENT_TARGET = ' ios/Runner.xcodeproj/project.pbxproj
+          sed -i -E 's/IPHONEOS_DEPLOYMENT_TARGET = [0-9.]+;/IPHONEOS_DEPLOYMENT_TARGET = 15.0;/g' ios/Runner.xcodeproj/project.pbxproj
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .metadata android ios
+          git commit -m "build: add Android and iOS native project scaffolds"
+          git push
+
+      - name: Resolve dependencies
+        run: flutter pub get
+
+      - name: Verify Dart formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze
+        run: dart analyze
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Build Android debug APK
+        run: flutter build apk --debug

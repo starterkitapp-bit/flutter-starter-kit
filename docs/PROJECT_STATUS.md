@@ -15,30 +15,30 @@
 - [x] Dart source formatting completed and persisted.
 - [x] Static analysis passed in GitHub Actions.
 - [x] Initial widget test passed in GitHub Actions.
-- [x] CI workflow checks formatting, analysis, and tests.
+- [x] CI workflow checks dependency resolution, formatting, analysis, and tests.
+- [x] CI rejects unformatted pull requests.
+- [x] Automated Android/iOS native scaffold workflow committed.
 - [ ] Android/iOS native project scaffolds committed.
-- [ ] Android build executed successfully.
+- [ ] Android debug build executed successfully.
 - [ ] iOS build executed on macOS/Xcode.
 
 ## Latest inspected CI evidence
 
-Workflow run [41885720713](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41885720713):
+Workflow run [41886127931](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41886127931), commit `a0b3ee1e8a4a31e75e59ada1e561f7a4043cd4ea):
 
 - Flutter 3.47.9 setup: passed.
 - `flutter pub get`: passed.
-- `dart format .`: passed; three previously unformatted Dart files were corrected.
-- Lockfile and formatted sources were committed by the workflow as commit `c04a9636dd72d9f868bcd5ef98a5539e64a0f47e`.
-- Formatting verification: passed.
+- Dart formatting: passed.
 - `dart analyze`: passed.
 - `flutter test`: passed.
 
-The workflow run started from commit `38769a4df7878db7e94008fc19b214f9fe0a8d4b`; its persistence step created the lockfile/formatting commit before the final formatting, analysis, and test steps. Those final checks all passed in the same CI workspace after persistence. A subsequent push-triggered run will independently verify the new branch head.
+The earlier workflow run [41885720713](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41885720713) also passed after its formatter/lockfile persistence step. The lockfile is committed at the repository root.
 
 ## Phase tracking
 
 | Phase | Scope | Status |
 |---|---|---|
-| 0 | SDK pin, dependency audit, lints, structure, config | In progress; CI quality gates now pass |
+| 0 | SDK pin, dependency audit, lints, structure, config | CI quality gates pass; native scaffold generation pending |
 | 1 | Design system, Forui, themes, brand config | Initial Forui root integration only |
 | 2 | Arabic/English localization and RTL | Not started |
 | 3 | Components, motion, haptics, reduced motion | Not started |
@@ -53,12 +53,14 @@ The workflow run started from commit `38769a4df7878db7e94008fc19b214f9fe0a8d4b`;
 
 ## Verification boundaries
 
-All repository edits and CI execution so far were performed through GitHub. No files or commands were run on the user's device. CI verifies the Dart foundation on Linux; it does not establish Android/iOS native builds. iOS verification requires macOS and Xcode. Native Android/iOS project directories are not yet committed.
+All repository edits and CI execution so far were performed through GitHub. No files or commands were run on the user's device. CI currently verifies the Dart foundation on Linux; it does not yet establish native Android/iOS builds. The native scaffold workflow will generate Android and iOS projects from the pinned Flutter SDK, set Android minimum API 24 and iOS deployment target 15.0, then run Dart checks/tests and an Android debug build. iOS build verification still requires macOS and Xcode.
+
+The generated starter bundle identifier is `com.starterkitapp.mobilestarterkit`; the future app initialization workflow must replace it with each consuming app's own identifier.
 
 ## Next engineering actions
 
-1. Independently verify the latest main commit with a fresh CI run.
-2. Generate Android/iOS native scaffolding using the pinned Flutter SDK and set Android API 24 / iOS 15.0 deployment targets.
-3. Implement the centralized design tokens and complete Forui Light/Dark theme selection.
+1. Generate and commit Android/iOS native scaffolding from the pinned SDK.
+2. Verify Android debug build and keep iOS build verification explicitly pending until a macOS/Xcode runner is used.
+3. Implement centralized design tokens and complete Forui Light/Dark theme selection.
 4. Add official ARB/gen-l10n resources and persisted System/Arabic/English plus System/Light/Dark settings.
 5. Continue with components, motion, accessibility, and the remaining foundation phases.
