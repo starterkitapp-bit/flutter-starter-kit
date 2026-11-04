@@ -43,12 +43,16 @@ Use Riverpod 3 manually. Select provider types and lifetimes deliberately; avoid
 
 Prefer immutable models. Handwrite serialization and `copyWith` when needed. Separate transport DTOs from domain entities only when their responsibilities or lifecycles differ. Add value equality when it matters to behavior. Validate external input at the boundary and map transport failures into the central failure model.
 
-## Reuse validation
-
-Brand and environment configuration are separate. A second app must be able to change identity, assets, accent, optional fonts, environment, and selected modules without editing Core or Design System. This is a final acceptance requirement, not an assumed property.
-
 ## Networking boundary
 
 `core/network/` owns reusable transport setup and transport-to-failure mapping. The shared Dio factory applies bounded connection, send, and receive timeouts; consuming apps supply their environment-specific base URL. Authentication and diagnostic interceptors are opt-in and must be added by the app composition root.
 
 Map `DioException` to the transport-independent `Failure` model at the data boundary. Do not pass raw Dio exceptions, server response bodies, or transport-specific types into domain or presentation code. The initial mapper handles common HTTP statuses and numeric `Retry-After` values; malformed or unsupported cases remain safely classified as unknown. Automatic retries are intentionally absent until request idempotency and endpoint policy are explicitly defined.
+
+## Logging boundary
+
+`core/logging/AppLogger` is the shared diagnostic boundary. It sanitizes messages, nested context, and optional stack traces before invoking the configured writer; raw exception messages are never retained. The default sink uses `dart:developer`, and tests can inject an in-memory writer. Logging remains opt-in rather than becoming an automatic network interceptor or hidden global singleton.
+
+## Reuse validation
+
+Brand and environment configuration are separate. A second app must be able to change identity, assets, accent, optional fonts, environment, and selected modules without editing Core or Design System. This is a final acceptance requirement, not an assumed property.

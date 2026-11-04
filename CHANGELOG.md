@@ -2,6 +2,10 @@
 
 Notable changes to the starter kit are recorded here. This project is under active development; entries do not imply release readiness.
 
+## 2026-11-05 — Unreleased
+
+- Verified the current GitHub quality workflow and Android debug APK build after the Dio networking change.
+
 ## 2026-11-04 — Unreleased
 
 - Established Flutter/Dart Android+iOS foundation with FVM pin, Riverpod, GoRouter, and Forui.
@@ -12,4 +16,3 @@ Notable changes to the starter kit are recorded here. This project is under acti
 - Added GitHub quality workflow and Android debug build workflow.
 - Guarded Android verification against stale quality runs when `main` advances.
 - Reorganized engineering documentation around architecture, design system, standards, testing, security, and platform responsibilities.
-- Verified latest quality CI for the failure taxonomy; Android APK evidence remains from the earlier foundation baseline.

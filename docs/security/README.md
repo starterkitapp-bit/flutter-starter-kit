@@ -26,9 +26,12 @@ Security controls are selected according to the data, threat model, and platform
 
 ## Logging and diagnostics
 
-- Redact secrets and personal data before logging.
-- Do not log authorization headers, tokens, passwords, sensitive request/response bodies, or unnecessary identifiers.
-- Keep diagnostic information useful without exposing private data.
+- Use `core/logging/AppLogger` as the shared diagnostic boundary.
+- Redact sensitive context keys, bearer credentials, common secret key/value pairs, query credentials, and email addresses before invoking any writer.
+- The logger records an error's runtime type only; it never records the raw exception message.
+- Do not pass request/response bodies, authorization headers, passwords, tokens, or unnecessary identifiers as context.
+- Custom writers receive sanitized entries only. Keep production diagnostics useful without exposing private data.
+- Logging is opt-in at the call site; do not install a global interceptor or log every network request by default.
 
 ## Permissions and platform security
 
