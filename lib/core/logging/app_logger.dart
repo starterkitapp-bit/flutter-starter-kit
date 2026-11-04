@@ -113,9 +113,7 @@ final _bearerPattern = RegExp(
 );
 
 final _keyValueSecretPattern = RegExp(
-  r"(\b(?:password|passwd|secret|token|access[_-]?token|refresh[_-]?token|"
-  r"api[_-]?key|authorization|cookie)\b\s*[:=]\s*)"
-  r"("[^"]*"|'[^']*'|[^\s,;]+)",
+  r'''(\b(?:password|passwd|secret|token|access[_-]?token|refresh[_-]?token|api[_-]?key|authorization|cookie)\b\s*[:=]\s*)("[^"]*"|'[^']*'|[^\s,;]+)''',
   caseSensitive: false,
 );
 
