@@ -4,10 +4,10 @@ Notable changes to the starter kit are recorded here. This project is under acti
 
 ## 2026-11-05 — Unreleased
 
-- Verified the current GitHub quality workflow and Android debug APK build after the Dio networking change.
+- Verified the Android debug APK after the logging implementation, including dependency resolution, localization generation, formatting, analysis, and tests (run [41927228830](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41927228830)).
 - Added a dependency-free AppLogger that redacts sensitive message/context/stack-trace data before output and avoids retaining raw exception messages.
 - Added focused logging tests for credentials, personal data, nested context, disabled output, and unsupported object values.
-- Verified formatting, analysis, and Flutter tests for the logging implementation (run [41926709789](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41926709789)); Android APK verification after this addition remains pending.
+- Verified formatting, analysis, and Flutter tests for the logging implementation (run [41926709789](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41926709789)); Android APK verification also passed (run [41927228830](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41927228830)).
 
 ## 2026-11-04 — Unreleased
 
