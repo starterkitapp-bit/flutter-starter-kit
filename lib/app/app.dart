@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:forui/forui.dart';
 
+import '../design_system/theme/app_theme.dart';
 import 'navigation/app_router.dart';
 
 /// Root application widget and shared framework configuration.
@@ -24,18 +25,11 @@ class StarterKitApp extends StatelessWidget {
       GlobalCupertinoLocalizations.delegate,
       ...FLocalizations.localizationsDelegates,
     ],
-    builder: (context, child) {
-      final isLight = Theme.brightnessOf(context) == Brightness.light;
-      final foruiTheme = isLight
-          ? FTheme.neutral.light.touch
-          : FTheme.neutral.dark.touch;
-
-      return FTheme(
-        data: foruiTheme,
-        child: FToaster(
-          child: FTooltipGroup(child: child ?? const SizedBox.shrink()),
-        ),
-      );
-    },
+    builder: (context, child) => FTheme(
+      data: AppTheme.forBrightness(Theme.brightnessOf(context)),
+      child: FToaster(
+        child: FTooltipGroup(child: child ?? const SizedBox.shrink()),
+      ),
+    ),
   );
 }

@@ -2,25 +2,26 @@
 
 ## Purpose
 
-Provide one consistent, reusable visual and interaction language across every app created from this starter. This document is a design baseline; tokens and components are not yet implemented.
+Provide one consistent, reusable visual and interaction language across every app created from this starter. Tokens and theme selection are centralized in `lib/design_system/`.
 
 ## Visual direction
 
 Premium, restrained, neutral, calm. Use clear hierarchy, readable typography, purposeful spacing, rounded geometry, and restrained shadows. Avoid gratuitous gradients, glass effects, neon, glows, heavy shadows, excessive borders, and card bloat. Functional status colors are permitted when they improve meaning and accessibility.
 
-## Token foundations
+## Implemented foundations
 
-- Spacing: 4, 8, 12, 16, 24, 32, 48, 64 logical pixels.
-- Radii: 8, 12, 16, 24, full.
-- Typography: Display, Title, Headline, Body, Body Small, Label, Caption.
-- Typical screen horizontal padding: 20–24 logical pixels.
-- Typical section spacing: 24–32 logical pixels or more when hierarchy requires.
+Typed tokens are available from:
 
-Promote these into typed tokens during implementation. Do not scatter repeated literal values through feature screens.
+- `tokens/app_spacing.dart`: 4, 8, 12, 16, 24, 32, 48, 64 logical pixels.
+- `tokens/app_radius.dart`: 8, 12, 16, 24, and full radius.
+- `tokens/app_motion.dart`: 120 ms fast, 220 ms base, 320 ms slow, 400 ms maximum reference durations.
+- `theme/app_theme.dart`: one brightness-aware source for the Forui neutral mobile touch themes.
+
+Use these tokens instead of scattering repeated literal values through feature screens. Typical screen horizontal padding is 20–24 logical pixels; typical section spacing is 24–32 logical pixels or more when hierarchy requires.
 
 ## Theme and components
 
-Support complete Light and Dark themes plus System preference. System follows platform brightness; explicit choices override it. Theme selection must be centralized across Flutter and Forui.
+Support complete Light and Dark themes plus System preference. System follows platform brightness; explicit choices override it. The root app resolves brightness once and passes the matching Forui theme through the centralized `AppTheme` selector.
 
 Forui is the primary component system. Use documented theme/widget APIs and explicitly select the matching Forui brightness. Use Cupertino behavior for native platform interactions where appropriate, not as a competing design system.
 
@@ -32,6 +33,6 @@ Bundle appropriately licensed IBM Plex Sans and IBM Plex Sans Arabic fonts with 
 
 ## Motion and accessibility
 
-Use Flutter primitives and shared motion tokens. Reference durations: 120 ms fast, 220 ms base, 320 ms slow, default maximum 400 ms. Motion communicates state change, feedback, continuity, or affordance; it must be interruptible and respect reduced motion.
+Use Flutter primitives and shared motion tokens. Motion communicates state change, feedback, continuity, or affordance; it must be interruptible and respect reduced motion.
 
 Centralize purposeful haptics. Validate contrast, semantics, screen-reader labels, 48 logical pixel touch targets where applicable, text scaling, focus, keyboard interaction, and non-color status communication. The debug gallery must not ship in production.
