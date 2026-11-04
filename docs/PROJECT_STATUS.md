@@ -23,14 +23,14 @@
 - [x] Reduced-motion scope observes MediaQuery disableAnimations and platform accessibility feature changes.
 - [x] Centralized selection haptics gracefully handle unsupported platform channels.
 - [x] Shared AppAnimatedSwitcher fade transition implemented with reduced-motion-aware duration.
-- [x] Latest quality workflow passed localization generation, formatting, analyzer, and all tests (run 41895664453).
-- [x] Latest Android workflow passed localization generation, formatting, analyzer, tests, and debug APK build after haptics (run 41895845304).
+- [x] Latest quality workflow passed dependency resolution, localization generation, formatting, analyzer, and all tests (run [41916223088](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41916223088)).
+- [x] Latest Android workflow passed dependency resolution, localization generation, formatting, analyzer, tests, and Android debug APK build (run [41916417491](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41916417491)).
 - [ ] iOS build executed on macOS/Xcode.
 
 ## Latest inspected CI evidence
 
-- [Quality checks after the haptics test correction](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41895664453): passed dependency resolution, gen-l10n, formatting, dart analyze, and tests.
-- [Android debug APK after the haptics implementation](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41895845304): passed dependency resolution, gen-l10n, formatting, analysis, tests, and Android APK build.
+- [Flutter quality checks](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41916223088): dependency resolution, gen-l10n, formatting, dart analyze, all tests, and artifact persistence passed.
+- [Android debug APK](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41916417491): dependency resolution, gen-l10n, formatting, analysis, tests, and Android APK build passed.
 
 iOS compilation has not been run because it requires macOS and Xcode.
 
