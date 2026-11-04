@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 
-import '../../features/home/presentation/home_page.dart';
-import '../../features/settings/presentation/settings_page.dart';
+import 'package:starter_kit/features/home/presentation/home_page.dart';
+import 'package:starter_kit/features/settings/presentation/settings_page.dart';
 
 /// The application-level router configuration.
 final GoRouter appRouter = GoRouter(

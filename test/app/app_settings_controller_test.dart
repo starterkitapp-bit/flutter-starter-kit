@@ -5,9 +5,9 @@ import 'package:mocktail/mocktail.dart';
 
 import 'package:starter_kit/app/app_settings.dart';
 import 'package:starter_kit/app/app_settings_controller.dart';
-import 'package:starter_kit/core/storage/app_settings_store.dart';
+import 'package:starter_kit/app/app_settings_store.dart';
 
-class MockAppSettingsStore extends Mock implements AppSettingsStore {}
+class MockAppSettingsStore extends Mock implements AppSettingsStore;
 
 void main() {
   test('updates and persists theme preference', () async {
@@ -20,7 +20,7 @@ void main() {
       overrides: [
         appSettingsStoreProvider.overrideWithValue(store),
         appSettingsProvider.overrideWith(
-          () => AppSettingsController(initialSettings: const AppSettings()),
+          () => AppSettingsController(),
         ),
       ],
     );
@@ -44,7 +44,7 @@ void main() {
       overrides: [
         appSettingsStoreProvider.overrideWithValue(store),
         appSettingsProvider.overrideWith(
-          () => AppSettingsController(initialSettings: const AppSettings()),
+          () => AppSettingsController(),
         ),
       ],
     );

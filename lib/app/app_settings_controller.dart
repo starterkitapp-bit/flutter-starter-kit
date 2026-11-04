@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../core/storage/app_settings_store.dart';
-import 'app_settings.dart';
+import 'package:starter_kit/app/app_settings.dart';
+import 'package:starter_kit/app/app_settings_store.dart';
 
 /// Provides the platform-backed application settings store.
 final appSettingsStoreProvider = Provider<AppSettingsStore>(
@@ -19,7 +19,7 @@ final appSettingsProvider =
 /// Updates preferences immediately and serializes their persistence writes.
 class AppSettingsController extends Notifier<AppSettings> {
   /// Creates a controller with optional settings loaded during bootstrap.
-  AppSettingsController({
+  new({
     this.initialSettings = const AppSettings(),
   });
 
@@ -57,7 +57,7 @@ class AppSettingsController extends Notifier<AppSettings> {
     final operation = _writeQueue.then((_) => write());
     _writeQueue = operation.then<void>(
       (_) {},
-      onError: (Object error, StackTrace stackTrace) {},
+      onError: (Object _, StackTrace _) {},
     );
     return operation;
   }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../app/app_settings.dart';
+import 'package:starter_kit/app/app_settings.dart';
 
 /// Persists small, non-sensitive application preferences.
 class AppSettingsStore {
   /// Creates a store backed by asynchronous platform preferences.
-  AppSettingsStore(this._preferences);
+  new(this._preferences);
 
   static const String _themeModeKey = 'starter_kit.theme_mode';
   static const String _localeKey = 'starter_kit.locale';

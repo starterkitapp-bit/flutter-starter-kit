@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
 
-import '../design_system/theme/app_theme.dart';
-import 'app_settings_controller.dart';
-import 'localization/generated/app_localizations.dart';
-import 'navigation/app_router.dart';
+import 'package:starter_kit/app/app_settings_controller.dart';
+import 'package:starter_kit/app/localization/generated/app_localizations.dart';
+import 'package:starter_kit/app/navigation/app_router.dart';
+import 'package:starter_kit/design_system/theme/app_theme.dart';
 
 /// Root application widget and shared framework configuration.
 class StarterKitApp extends ConsumerWidget {
   /// Creates the root application widget.
-  const StarterKitApp({super.key, this.locale});
+  const new({super.key, this.locale});
 
   /// Optional locale override for controlled embedding and tests.
   final Locale? locale;
@@ -28,7 +28,7 @@ class StarterKitApp extends ConsumerWidget {
       darkTheme: ThemeData(brightness: Brightness.dark, useMaterial3: true),
       themeMode: settings.themeMode,
       supportedLocales: AppLocalizations.supportedLocales,
-      localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+      localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
         ...AppLocalizations.localizationsDelegates,
         ...FLocalizations.localizationsDelegates,
       ],

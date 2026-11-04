@@ -1,17 +1,16 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../app/app_settings_controller.dart';
-import '../../../app/localization/generated/app_localizations.dart';
-import '../../../design_system/tokens/app_spacing.dart';
+import 'package:starter_kit/app/app_settings_controller.dart';
+import 'package:starter_kit/app/localization/generated/app_localizations.dart';
+import 'package:starter_kit/design_system/tokens/app_spacing.dart';
 
 /// Allows users to choose their appearance and language preferences.
 class SettingsPage extends ConsumerWidget {
   /// Creates the application settings screen.
-  const SettingsPage({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -3,11 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:starter_kit/app/app_settings.dart';
-import 'package:starter_kit/core/storage/app_settings_store.dart';
+import 'package:starter_kit/app/app_settings_store.dart';
 
 class MockSharedPreferencesAsync extends Mock
-    implements SharedPreferencesAsync {}
+    implements SharedPreferencesAsync;
 
 void main() {
   late MockSharedPreferencesAsync preferences;
