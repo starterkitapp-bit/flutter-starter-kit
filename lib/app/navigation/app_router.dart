@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/home/presentation/home_page.dart';
 
+/// The application-level router configuration.
 final GoRouter appRouter = GoRouter(
   routes: <RouteBase>[
     GoRoute(

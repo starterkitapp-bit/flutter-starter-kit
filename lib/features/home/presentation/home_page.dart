@@ -1,7 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:forui/forui.dart';
 
+/// Minimal entry screen for validating the shared application foundation.
 class HomePage extends StatelessWidget {
+  /// Creates the starter kit entry screen.
   const HomePage({super.key});
 
   @override

@@ -4,7 +4,9 @@ import 'package:forui/forui.dart';
 
 import 'navigation/app_router.dart';
 
+/// Root application widget and shared framework configuration.
 class StarterKitApp extends StatelessWidget {
+  /// Creates the root application widget.
   const StarterKitApp({super.key});
 
   @override

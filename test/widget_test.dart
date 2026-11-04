@@ -1,18 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:forui/forui.dart';
-import 'package:starter_kit/features/home/presentation/home_page.dart';
+
+import 'package:starter_kit/app/app.dart';
 
 void main() {
-  testWidgets('home page renders the starter kit identity', (tester) async {
+  testWidgets('application opens the starter kit home route', (tester) async {
     await tester.pumpWidget(
-      MaterialApp(
-        home: FTheme(
-          data: FTheme.neutral.light.touch,
-          child: const HomePage(),
-        ),
-      ),
+      const ProviderScope(child: StarterKitApp()),
     );
+    await tester.pumpAndSettle();
 
     expect(find.text('Flutter Starter Kit'), findsOneWidget);
     expect(

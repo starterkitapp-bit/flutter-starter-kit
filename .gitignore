@@ -10,7 +10,7 @@ coverage/
 .metadata
 
 # FVM SDK cache (keep .fvmrc committed)
-.fvm/flutter_sdk
+.fvm/
 
 # IDE / OS
 .idea/
