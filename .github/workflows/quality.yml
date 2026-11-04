@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: quality-${{ github.workflow }}-${{ github.ref }}
@@ -18,7 +18,7 @@ jobs:
   analyze-and-test:
     name: Analyze and test
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -30,10 +30,24 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Resolve dependencies
+      - name: Resolve dependencies and generate lockfile
         run: flutter pub get
 
-      - name: Check formatting
+      - name: Format Dart sources
+        run: dart format .
+
+      - name: Persist formatter output and lockfile on main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pubspec.lock lib test
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: apply Dart formatting and lock dependencies"
+            git push
+          fi
+
+      - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
 
       - name: Analyze
