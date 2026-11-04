@@ -1,5 +1,15 @@
 {
   "@@locale": "ar",
   "appTitle": "حزمة Flutter الأساسية",
-  "homeDescription": "هنا تبدأ البنية الأساسية القابلة لإعادة الاستخدام للتطبيق."
+  "homeDescription": "هنا تبدأ البنية الأساسية القابلة لإعادة الاستخدام للتطبيق.",
+  "settingsAction": "الإعدادات",
+  "settingsTitle": "الإعدادات",
+  "themeSectionTitle": "المظهر",
+  "languageSectionTitle": "اللغة",
+  "systemOption": "حسب النظام",
+  "lightOption": "فاتح",
+  "darkOption": "داكن",
+  "englishOption": "الإنجليزية",
+  "arabicOption": "العربية",
+  "backAction": "رجوع"
 }

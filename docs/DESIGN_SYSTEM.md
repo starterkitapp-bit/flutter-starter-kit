@@ -21,13 +21,13 @@ Use these tokens instead of scattering repeated literal values through feature s
 
 ## Theme and components
 
-Support complete Light and Dark themes plus System preference. System follows platform brightness; explicit choices override it. The root app resolves brightness once and passes the matching Forui theme through the centralized `AppTheme` selector.
+Support complete Light and Dark themes plus System preference. The root app resolves brightness once and passes the matching Forui theme through the centralized `AppTheme` selector. The settings screen exposes System, Light, and Dark choices; preference persistence is handled by the app settings controller.
 
 Forui is the primary component system. Use documented theme/widget APIs and explicitly select the matching Forui brightness. Use Cupertino behavior for native platform interactions where appropriate, not as a competing design system.
 
 ## Localization and direction
 
-English and Arabic message resources live in `lib/app/localization/arb/`; Flutter's official `gen-l10n` generates the typed localization API into `lib/app/localization/generated/`. English is the deliberate fallback for unsupported device locales; Arabic uses RTL and English uses LTR. User-selectable, persisted language preference is a separate settings/bootstrap responsibility and remains pending.
+English and Arabic message resources live in `lib/app/localization/arb/`; Flutter's official `gen-l10n` generates the typed localization API into `lib/app/localization/generated/`. English is the deliberate fallback for unsupported device locales; Arabic uses RTL and English uses LTR. The settings screen exposes System, English, and Arabic choices, with the selection persisted through `AppSettingsStore`.
 
 ## Branding and typography
 

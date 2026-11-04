@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:forui/forui.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app/localization/generated/app_localizations.dart';
 
@@ -29,6 +30,11 @@ class HomePage extends StatelessWidget {
                 Text(
                   localizations.homeDescription,
                   textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 24),
+                FButton(
+                  onPress: () => context.go('/settings'),
+                  child: Text(localizations.settingsAction),
                 ),
               ],
             ),

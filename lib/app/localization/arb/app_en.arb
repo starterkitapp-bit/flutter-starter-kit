@@ -7,5 +7,18 @@
   "homeDescription": "The reusable application foundation starts here.",
   "@homeDescription": {
     "description": "Short introduction shown on the starter home screen."
-  }
+  },
+  "settingsAction": "Settings",
+  "@settingsAction": {
+    "description": "Button that opens application settings."
+  },
+  "settingsTitle": "Settings",
+  "themeSectionTitle": "Appearance",
+  "languageSectionTitle": "Language",
+  "systemOption": "System",
+  "lightOption": "Light",
+  "darkOption": "Dark",
+  "englishOption": "English",
+  "arabicOption": "Arabic",
+  "backAction": "Back"
 }

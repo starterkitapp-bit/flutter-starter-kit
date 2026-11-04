@@ -32,11 +32,15 @@ Do not use a different global Flutter version for this repository. Commit the re
 - Update docs and status when decisions or implementation state change.
 - Never report tests/builds as passing unless actual output has been inspected.
 
-## Localization
+## Localization and settings
 
 - Edit source translations in `lib/app/localization/arb/`.
 - English is the template; every supported locale must define the same message keys.
 - Generated Dart localization sources belong in `lib/app/localization/generated/` and are produced only by Flutter's official `gen-l10n` command.
+- The language setting supports System, English, and Arabic. System removes the persisted override and follows the device locale.
+- The appearance setting supports System, Light, and Dark.
+- Preferences are loaded before `runApp` and exposed through Riverpod. Small non-sensitive values use `SharedPreferencesAsync` via `AppSettingsStore`; never store credentials or secrets there.
+- If settings cannot be read at startup, the app reports the error and starts with safe System defaults.
 - Do not edit generated localization files by hand.
 
 ## Continuous integration
