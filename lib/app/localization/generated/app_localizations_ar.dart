@@ -15,4 +15,34 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get homeDescription =>
       'هنا تبدأ البنية الأساسية القابلة لإعادة الاستخدام للتطبيق.';
+
+  @override
+  String get settingsAction => 'الإعدادات';
+
+  @override
+  String get settingsTitle => 'الإعدادات';
+
+  @override
+  String get themeSectionTitle => 'المظهر';
+
+  @override
+  String get languageSectionTitle => 'اللغة';
+
+  @override
+  String get systemOption => 'حسب النظام';
+
+  @override
+  String get lightOption => 'فاتح';
+
+  @override
+  String get darkOption => 'داكن';
+
+  @override
+  String get englishOption => 'الإنجليزية';
+
+  @override
+  String get arabicOption => 'العربية';
+
+  @override
+  String get backAction => 'رجوع';
 }

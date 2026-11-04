@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 @immutable
 class AppSettings {
   /// Creates application settings with platform-following defaults.
-  const new({
-    this.themeMode = ThemeMode.system,
-    this.locale,
-  });
+  const new({this.themeMode = ThemeMode.system, this.locale});
 
   /// Theme preference; [ThemeMode.system] follows platform appearance.
   final ThemeMode themeMode;
@@ -16,14 +13,10 @@ class AppSettings {
   final Locale? locale;
 
   /// Returns settings with an updated theme preference.
-  AppSettings withThemeMode(ThemeMode value) => AppSettings(
-    themeMode: value,
-    locale: locale,
-  );
+  AppSettings withThemeMode(ThemeMode value) =>
+      AppSettings(themeMode: value, locale: locale);
 
   /// Returns settings with an updated language preference.
-  AppSettings withLocale(Locale? value) => AppSettings(
-    themeMode: themeMode,
-    locale: value,
-  );
+  AppSettings withLocale(Locale? value) =>
+      AppSettings(themeMode: themeMode, locale: value);
 }

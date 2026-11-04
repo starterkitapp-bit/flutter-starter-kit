@@ -11,9 +11,7 @@ class MockAppSettingsStore extends Mock implements AppSettingsStore;
 void main() {
   test('updates and persists theme preference', () async {
     final store = MockAppSettingsStore();
-    when(
-      () => store.saveThemeMode(ThemeMode.dark),
-    ).thenAnswer((_) async {});
+    when(() => store.saveThemeMode(ThemeMode.dark)).thenAnswer((_) async {});
 
     final container = ProviderContainer(
       overrides: [appSettingsStoreProvider.overrideWithValue(store)],
@@ -30,9 +28,7 @@ void main() {
 
   test('updates and persists language preference', () async {
     final store = MockAppSettingsStore();
-    when(
-      () => store.saveLocale(const Locale('ar')),
-    ).thenAnswer((_) async {});
+    when(() => store.saveLocale(const Locale('ar'))).thenAnswer((_) async {});
 
     final container = ProviderContainer(
       overrides: [appSettingsStoreProvider.overrideWithValue(store)],

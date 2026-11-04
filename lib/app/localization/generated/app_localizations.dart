@@ -109,6 +109,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The reusable application foundation starts here.'**
   String get homeDescription;
+
+  /// Button that opens application settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsAction;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTitle;
+
+  /// No description provided for @themeSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get themeSectionTitle;
+
+  /// No description provided for @languageSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get languageSectionTitle;
+
+  /// No description provided for @systemOption.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get systemOption;
+
+  /// No description provided for @lightOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get lightOption;
+
+  /// No description provided for @darkOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get darkOption;
+
+  /// No description provided for @englishOption.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get englishOption;
+
+  /// No description provided for @arabicOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get arabicOption;
+
+  /// No description provided for @backAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get backAction;
 }
 
 class _AppLocalizationsDelegate

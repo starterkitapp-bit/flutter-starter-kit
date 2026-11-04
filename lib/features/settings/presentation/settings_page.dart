@@ -47,23 +47,20 @@ class SettingsPage extends ConsumerWidget {
                 FTile(
                   title: Text(localizations.systemOption),
                   selected: settings.themeMode == ThemeMode.system,
-                  onPress: () => _save(
-                    () => controller.setThemeMode(ThemeMode.system),
-                  ),
+                  onPress: () =>
+                      _save(() => controller.setThemeMode(ThemeMode.system)),
                 ),
                 FTile(
                   title: Text(localizations.lightOption),
                   selected: settings.themeMode == ThemeMode.light,
-                  onPress: () => _save(
-                    () => controller.setThemeMode(ThemeMode.light),
-                  ),
+                  onPress: () =>
+                      _save(() => controller.setThemeMode(ThemeMode.light)),
                 ),
                 FTile(
                   title: Text(localizations.darkOption),
                   selected: settings.themeMode == ThemeMode.dark,
-                  onPress: () => _save(
-                    () => controller.setThemeMode(ThemeMode.dark),
-                  ),
+                  onPress: () =>
+                      _save(() => controller.setThemeMode(ThemeMode.dark)),
                 ),
                 const SizedBox(height: AppSpacing.xl),
                 Text(
@@ -79,16 +76,14 @@ class SettingsPage extends ConsumerWidget {
                 FTile(
                   title: Text(localizations.englishOption),
                   selected: settings.locale?.languageCode == 'en',
-                  onPress: () => _save(
-                    () => controller.setLocale(const Locale('en')),
-                  ),
+                  onPress: () =>
+                      _save(() => controller.setLocale(const Locale('en'))),
                 ),
                 FTile(
                   title: Text(localizations.arabicOption),
                   selected: settings.locale?.languageCode == 'ar',
-                  onPress: () => _save(
-                    () => controller.setLocale(const Locale('ar')),
-                  ),
+                  onPress: () =>
+                      _save(() => controller.setLocale(const Locale('ar'))),
                 ),
               ],
             ),

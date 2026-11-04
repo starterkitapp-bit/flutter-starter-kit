@@ -19,9 +19,7 @@ final appSettingsProvider =
 /// Updates preferences immediately and serializes their persistence writes.
 class AppSettingsController extends Notifier<AppSettings> {
   /// Creates a controller with optional settings loaded during bootstrap.
-  new({
-    this.initialSettings = const AppSettings(),
-  });
+  new({this.initialSettings = const AppSettings()});
 
   /// Settings loaded before the widget tree starts.
   final AppSettings initialSettings;

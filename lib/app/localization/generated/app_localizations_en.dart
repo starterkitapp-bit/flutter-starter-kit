@@ -15,4 +15,34 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get homeDescription =>
       'The reusable application foundation starts here.';
+
+  @override
+  String get settingsAction => 'Settings';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get themeSectionTitle => 'Appearance';
+
+  @override
+  String get languageSectionTitle => 'Language';
+
+  @override
+  String get systemOption => 'System';
+
+  @override
+  String get lightOption => 'Light';
+
+  @override
+  String get darkOption => 'Dark';
+
+  @override
+  String get englishOption => 'English';
+
+  @override
+  String get arabicOption => 'Arabic';
+
+  @override
+  String get backAction => 'Back';
 }
