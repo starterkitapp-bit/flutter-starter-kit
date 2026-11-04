@@ -16,6 +16,8 @@ Typed tokens are available from:
 - `tokens/app_radius.dart`: 8, 12, 16, 24, and full radius.
 - `tokens/app_motion.dart`: 120 ms fast, 220 ms base, 320 ms slow, 400 ms maximum reference durations.
 - `theme/app_theme.dart`: one brightness-aware source for the Forui neutral mobile touch themes.
+- `components/app_section.dart`: shared section layout and consistent heading/content spacing.
+- `motion/app_motion_scope.dart` and `tokens/app_motion.dart`: platform-aware reduced-motion preference and shared duration helpers.
 
 Use these tokens instead of scattering repeated literal values through feature screens. Typical screen horizontal padding is 20–24 logical pixels; typical section spacing is 24–32 logical pixels or more when hierarchy requires.
 
@@ -23,7 +25,7 @@ Use these tokens instead of scattering repeated literal values through feature s
 
 Support complete Light and Dark themes plus System preference. The root app resolves brightness once and passes the matching Forui theme through the centralized `AppTheme` selector. The settings screen exposes System, Light, and Dark choices; preference persistence is handled by the app settings controller.
 
-Forui is the primary component system. Use documented theme/widget APIs and explicitly select the matching Forui brightness. Use Cupertino behavior for native platform interactions where appropriate, not as a competing design system.
+Forui is the primary component system. Its theme remains the canonical source for component colors and typography; avoid maintaining a duplicate palette. Use documented theme/widget APIs and explicitly select the matching Forui brightness. Use Cupertino behavior for native platform interactions where appropriate, not as a competing design system.
 
 ## Localization and direction
 
@@ -37,6 +39,6 @@ Bundle appropriately licensed IBM Plex Sans and IBM Plex Sans Arabic fonts with 
 
 ## Motion and accessibility
 
-Use Flutter primitives and shared motion tokens. Motion communicates state change, feedback, continuity, or affordance; it must be interruptible and respect reduced motion.
+Use Flutter primitives and shared motion tokens. `AppMotionScope` observes Android's disable-animations preference and iOS's Reduce Motion accessibility feature; custom transitions can use `AppMotion.durationFor` to remove motion when requested. Motion communicates state change, feedback, continuity, or affordance; it must be interruptible and respect reduced motion. Centralized haptics and shared transition recipes remain pending.
 
 Centralize purposeful haptics. Validate contrast, semantics, screen-reader labels, 48 logical pixel touch targets where applicable, text scaling, focus, keyboard interaction, and non-color status communication. The debug gallery must not ship in production.

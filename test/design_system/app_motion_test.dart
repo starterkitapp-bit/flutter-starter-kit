@@ -55,4 +55,33 @@ void main() {
 
     expect(duration, const Duration(milliseconds: 220));
   });
+  testWidgets('iOS reduced motion changes are observed', (tester) async {
+    tester.platformDispatcher.accessibilityFeaturesTestValue =
+        const FakeAccessibilityFeatures();
+    addTearDown(tester.platformDispatcher.clearAccessibilityFeaturesTestValue);
+
+    var reducedMotion = false;
+
+    Widget buildApp() => MediaQuery(
+      data: const MediaQueryData(),
+      child: AppMotionScope(
+        child: Builder(
+          builder: (context) {
+            reducedMotion = AppMotion.shouldReduceMotion(context);
+            return const SizedBox.shrink();
+          },
+        ),
+      ),
+    );
+
+    await tester.pumpWidget(buildApp());
+    expect(reducedMotion, isFalse);
+
+    tester.platformDispatcher.accessibilityFeaturesTestValue =
+        const FakeAccessibilityFeatures(reduceMotion: true);
+    await tester.pump();
+
+    expect(reducedMotion, isTrue);
+  });
+
 }
