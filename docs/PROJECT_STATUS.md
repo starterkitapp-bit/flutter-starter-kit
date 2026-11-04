@@ -6,47 +6,46 @@
 
 ## Verified repository state
 
-- [x] Public GitHub repository exists; default branch is main.
-- [x] Engineering constitution and core project documentation committed.
+- [x] Public GitHub repository and engineering constitution committed.
 - [x] FVM SDK pin committed (.fvmrc: Flutter 3.47.9).
-- [x] Declared dependency graph resolves under the pinned SDK; pubspec.lock is committed.
-- [x] Initial Flutter app, ProviderScope, GoRouter home route, and Forui root integration committed.
-- [x] Android and iOS native project scaffolds generated and committed.
+- [x] Dependency graph resolves under the pinned SDK; pubspec.lock is committed.
+- [x] Flutter app entry point, Riverpod ProviderScope, GoRouter home/settings routes, and Forui root integration committed.
+- [x] Android and iOS native project scaffolds committed.
 - [x] Android minimum SDK configured to API 24.
 - [x] iOS deployment target configured to 15.0.
-- [x] Android debug APK build passed in GitHub Actions (run 41887018234).
+- [x] Android debug APK build passed for the native scaffold and localization baseline (runs 41887018234 and 41888496679).
 - [x] Central spacing, radius, and motion tokens implemented.
 - [x] Central Forui neutral mobile Light/Dark theme selection implemented.
-- [x] English and Arabic ARB resources committed.
-- [x] Official Flutter gen-l10n configured; generated Dart localization sources are committed.
-- [x] Arabic RTL and English LTR behavior covered by widget tests.
-- [x] Unsupported device locales explicitly fall back to English and are covered by a widget test.
-- [x] GitHub Actions resolves dependencies, generates localization sources, formats Dart, analyzes, and tests.
-- [x] Main-branch formatter output and generated localization sources are persisted by a separate write-permission job.
-- [x] Pull-request quality job runs without repository write permissions.
-- [ ] Android debug build re-verified after the latest localization and fallback changes.
+- [x] English and Arabic ARB resources and official Flutter gen-l10n committed.
+- [x] Arabic RTL, English LTR, and English fallback for unsupported locales covered by widget tests.
+- [x] System/Light/Dark and System/English/Arabic settings UI implemented.
+- [x] Theme and language preferences persist through SharedPreferencesAsync and load before runApp.
+- [x] Settings store/controller unit tests and settings route widget test pass.
+- [x] Latest quality workflow passed formatting, localization generation, dart analyze with zero issues, and all tests (run 41890143955).
+- [ ] Android debug build re-verification after settings implementation is currently running (run 41890374818).
 - [ ] iOS build executed on macOS/Xcode.
 
 ## Latest inspected CI evidence
 
-- [Android scaffold and debug build](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41887018234): passed, including native project generation, dependency resolution, formatting, analysis, tests, and Android debug APK build.
-- [Localization quality run](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41887933561): passed, including `flutter gen-l10n`, formatting, `dart analyze`, and widget tests for English and Arabic RTL.
-- [Locale fallback quality run](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41888262831): passed, including the unsupported-locale-to-English fallback test.
+- [Android scaffold and initial debug build](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41887018234): passed.
+- [Android build with localization and fallback](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41888496679): passed.
+- [Settings implementation quality run](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41890143955): passed dependency resolution, gen-l10n, formatting, analyzer, and tests.
+- [Android build with settings implementation](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41890374818): in progress at the time of this update.
 
-The latest Android rebuild after the current localization changes is tracked separately in GitHub Actions. iOS compilation has not been run because it requires macOS and Xcode.
+iOS compilation has not been run because it requires macOS and Xcode.
 
 ## Phase tracking
 
 | Phase | Scope | Status |
 |---|---|---|
-| 0 | SDK pin, dependency audit, lints, structure, config | Foundation committed; CI quality gates and initial Android debug build pass |
-| 1 | Design system, Forui, themes, brand config | Spacing/radius/motion tokens and centralized Forui Light/Dark selection implemented; brand configuration and component system remain |
-| 2 | Arabic/English localization and RTL | ARB/gen-l10n, locale delegates, RTL/LTR, and English fallback implemented; persisted user language preference remains |
-| 3 | Components, motion, haptics, reduced motion | Shared motion reference tokens only; component library, haptics, and reduced-motion behavior remain |
+| 0 | SDK pin, dependency audit, lints, structure, config | Foundation committed; quality CI passes; Android debug builds have passed on earlier baselines |
+| 1 | Design system, Forui, themes, brand config | Spacing/radius/motion tokens and centralized Forui Light/Dark selection implemented; semantic color/typography tokens and brand configuration remain |
+| 2 | Arabic/English localization and RTL | ARB/gen-l10n, runtime language selection, persistence, RTL/LTR, and English fallback implemented |
+| 3 | Components, motion, haptics, reduced motion | Motion reference tokens only; shared components, haptics, and reduced-motion behavior remain |
 | 4 | Gallery and accessibility validation | Not started |
-| 5 | Bootstrap, splash, navigation | Initial GoRouter home route only; robust bootstrap, native splash refinement, and deep-link validation remain |
-| 6 | Core errors/network/logging/storage/lifecycle | Not started |
-| 7 | Settings/onboarding if required | Theme/language preference UI and persistence remain |
+| 5 | Bootstrap, splash, navigation | Settings are loaded before runApp with recovery to System defaults; home/settings routes exist; custom splash and deep-link validation remain |
+| 6 | Core errors/network/logging/storage/lifecycle | App-specific settings persistence exists; reusable core infrastructure remains |
+| 7 | Settings/onboarding | Theme and language settings implemented; onboarding remains optional/not started |
 | 8 | Optional authentication | Not started |
 | 9 | App template/init workflow, flavors, recipes | Not started |
 | 10 | Reference feature | Not started |
@@ -60,8 +59,8 @@ The generated starter bundle identifier is `com.starterkitapp.mobilestarterkit`.
 
 ## Next engineering actions
 
-1. Complete Android debug rebuild verification against the latest localization changes.
-2. Implement persisted System/Arabic/English and System/Light/Dark preferences, with a small Forui settings surface.
-3. Complete the design system's semantic tokens and shared component foundations.
-4. Build out startup/bootstrap recovery and native splash behavior.
-5. Continue with accessibility, motion/reduced-motion, core infrastructure, CI hardening, and the remaining phases.
+1. Confirm Android debug build with the settings implementation.
+2. Complete semantic design tokens and shared Forui component foundations.
+3. Implement reduced-motion handling, purposeful transitions, and haptics.
+4. Add robust reusable core error/network/logging/lifecycle infrastructure.
+5. Continue accessibility validation, bootstrap/splash refinement, CI hardening, and remaining phases.
