@@ -5,11 +5,7 @@ import 'package:starter_kit/design_system/tokens/app_motion.dart';
 /// A shared fade transition for replacing local UI content.
 class AppAnimatedSwitcher extends StatelessWidget {
   /// Creates an animated content switcher.
-  const new({
-    required this.child,
-    super.key,
-    this.duration = AppMotion.base,
-  });
+  const new({required this.child, super.key, this.duration = AppMotion.base});
 
   /// The currently displayed child. Give changing children distinct keys.
   final Widget child;
