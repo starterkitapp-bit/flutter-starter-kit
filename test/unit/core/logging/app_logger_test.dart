@@ -34,10 +34,7 @@ void main() {
           'requestId': 'req-123',
           'Authorization': 'Bearer top-secret',
           'userEmail': 'person@example.com',
-          'nested': <String, Object?>{
-            'api_key': 'nested-secret',
-            'attempt': 2,
-          },
+          'nested': <String, Object?>{'api_key': 'nested-secret', 'attempt': 2},
           'items': <Object?>[
             <String, Object?>{'refreshToken': 'refresh-secret'},
           ],
@@ -52,10 +49,7 @@ void main() {
         (context['nested']! as Map<String, Object?>)['api_key'],
         '[REDACTED]',
       );
-      expect(
-        (context['nested']! as Map<String, Object?>)['attempt'],
-        2,
-      );
+      expect((context['nested']! as Map<String, Object?>)['attempt'], 2);
       final items = context['items']! as List<Object?>;
       expect(
         (items.single as Map<String, Object?>)['refreshToken'],
@@ -87,10 +81,7 @@ void main() {
 
     test('does not call the writer when disabled', () {
       var writeCount = 0;
-      final logger = AppLogger(
-        enabled: false,
-        writer: (_) => writeCount++,
-      );
+      final logger = AppLogger(enabled: false, writer: (_) => writeCount++);
 
       logger.log(AppLogLevel.error, 'Must not be emitted');
 

@@ -60,10 +60,8 @@ final class AppLogger {
   ///
   /// Set [enabled] to false to suppress all output, or provide [writer] to
   /// route sanitized entries to a controlled diagnostic sink.
-  AppLogger({
-    LogWriter? writer,
-    this.enabled = true,
-  }) : _writer = writer ?? _writeToDeveloperLog;
+  AppLogger({LogWriter? writer, this.enabled = true})
+    : _writer = writer ?? _writeToDeveloperLog;
 
   final LogWriter _writer;
 
@@ -91,7 +89,9 @@ final class AppLogger {
       message: _redactText(message),
       context: safeContext,
       errorType: error?.runtimeType.toString(),
-      stackTrace: stackTrace == null ? null : _redactText(stackTrace.toString()),
+      stackTrace: stackTrace == null
+          ? null
+          : _redactText(stackTrace.toString()),
     );
 
     _writer(entry);
