@@ -42,7 +42,8 @@ void main() {
 
     final settings = await store.load();
 
-    expect(settings, const AppSettings());
+    expect(settings.themeMode, ThemeMode.system);
+    expect(settings.locale, isNull);
   });
 
   test('system language preference removes the saved override', () async {

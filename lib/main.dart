@@ -31,7 +31,7 @@ Future<void> main() async {
 
   runApp(
     ProviderScope(
-      overrides: <Override>[
+      overrides: [
         appSettingsStoreProvider.overrideWithValue(store),
         appSettingsProvider.overrideWith(
           () => AppSettingsController(initialSettings: initialSettings),
