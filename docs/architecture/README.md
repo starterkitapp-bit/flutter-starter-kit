@@ -46,3 +46,9 @@ Prefer immutable models. Handwrite serialization and `copyWith` when needed. Sep
 ## Reuse validation
 
 Brand and environment configuration are separate. A second app must be able to change identity, assets, accent, optional fonts, environment, and selected modules without editing Core or Design System. This is a final acceptance requirement, not an assumed property.
+
+## Networking boundary
+
+`core/network/` owns reusable transport setup and transport-to-failure mapping. The shared Dio factory applies bounded connection, send, and receive timeouts; consuming apps supply their environment-specific base URL. Authentication and diagnostic interceptors are opt-in and must be added by the app composition root.
+
+Map `DioException` to the transport-independent `Failure` model at the data boundary. Do not pass raw Dio exceptions, server response bodies, or transport-specific types into domain or presentation code. The initial mapper handles common HTTP statuses and numeric `Retry-After` values; malformed or unsupported cases remain safely classified as unknown. Automatic retries are intentionally absent until request idempotency and endpoint policy are explicitly defined.

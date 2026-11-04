@@ -8,6 +8,7 @@ Notable changes to the starter kit are recorded here. This project is under acti
 - Added Arabic/English localization, RTL/LTR behavior, theme and language preferences.
 - Added initial design tokens, shared section layout, reduced-motion support, haptics, and animated switcher.
 - Added transport-independent core failure types and tests.
+- Added shared Dio configuration and centralized transport-failure mapping with focused tests; retries remain opt-in pending idempotency policy.
 - Added GitHub quality workflow and Android debug build workflow.
 - Reorganized engineering documentation around architecture, design system, standards, testing, security, and platform responsibilities.
 - Verified latest quality CI for the failure taxonomy; Android APK evidence remains from the earlier foundation baseline.

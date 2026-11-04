@@ -17,9 +17,11 @@
 - [x] Startup settings load before runApp with safe System defaults on read failure.
 - [x] Reduced-motion scope, centralized haptics, and reduced-motion-aware AppAnimatedSwitcher.
 - [x] Transport-independent Failure taxonomy for network, timeout, auth/permission, validation, conflict, rate limit, server, cancellation, and unknown cases.
-- [x] Latest quality workflow passed dependency resolution, localization generation, formatting, analyzer, and tests (run [41920274854](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41920274854)).
-- [x] Android debug APK build passed on the earlier scaffold/settings/haptics baseline (run [41916417491](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41916417491)).
-- [ ] Android APK build rerun after the Failure taxonomy addition.
+- [x] Central Dio client factory with bounded timeouts and environment-supplied base URL.
+- [x] Dio exception mapping to the central Failure taxonomy, including safe HTTP status and numeric Retry-After handling.
+- [x] Previous quality workflow passed formatting, analysis, and tests before the Dio networking change (run [41920829873](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41920829873)).
+- [ ] Quality CI for the Dio networking change.
+- [ ] Android APK build rerun after the Failure taxonomy and Dio networking changes.
 - [ ] iOS build on macOS/Xcode.
 
 ## Phase tracking
@@ -32,7 +34,7 @@
 | 3 | Components, motion, haptics | AppSection, AppAnimatedSwitcher, reduced-motion scope, and haptics implemented; broader component library remains |
 | 4 | Gallery and accessibility | Not started |
 | 5 | Bootstrap, splash, navigation | Settings load before runApp and home/settings routes exist; custom splash/deep-link validation remain |
-| 6 | Core infrastructure | Failure taxonomy implemented and tested; Dio client, logging, reusable storage, lifecycle remain |
+| 6 | Core infrastructure | Failure taxonomy, Dio client configuration, and Dio-to-Failure mapping implemented; safe logging, reusable storage, lifecycle remain |
 | 7 | Settings/onboarding | Theme/language settings implemented; onboarding remains optional |
 | 8 | Optional authentication | Not started |
 | 9 | App template/init workflow, flavors, recipes | Not started |
@@ -41,13 +43,12 @@
 
 ## Verification boundaries
 
-All repository edits and CI execution are performed through GitHub; no files or commands have been run on the user's device. The latest quality run verifies Dart formatting, analysis, and tests for the Failure taxonomy. Android debug APK evidence predates that addition and must be refreshed. iOS compilation has not been run; it requires macOS and Xcode.
+All repository edits and CI execution are performed through GitHub; no files or commands have been run on the user's device. The latest quality run before the Dio networking change passed formatting, analysis, and tests. The new network client and mapper require a fresh CI run. Android debug APK evidence predates the Failure taxonomy and Dio networking changes and must be refreshed. iOS compilation has not been run; it requires macOS and Xcode.
 
 The current scaffold identifier is com.starterkitapp.mobilestarterkit. The future app initialization workflow must replace it with each consuming app's own identifier.
 
 ## Next actions
 
-1. Complete design-system foundations and accessibility coverage.
-2. Implement Dio networking, safe logging, and centralized transport-to-failure mapping with focused tests.
-3. Re-run Android debug build after the core changes; add iOS CI on macOS when available.
-4. Continue bootstrap, platform, documentation, and reusable app initialization work.
+1. Complete the network client and failure-mapping verification, then add safe structured logging without sensitive data.
+2. Re-run Android debug build after the core networking changes; add iOS CI on macOS when available.
+3. Continue design-system foundations, accessibility coverage, bootstrap, and reusable app initialization work.
