@@ -31,6 +31,7 @@ Premium, restrained, neutral, calm. Use clear hierarchy, readable typography, pu
 - Radii: 8, 12, 16, 24, and full radius.
 - Motion reference durations: 120 ms fast, 220 ms base, 320 ms slow, 400 ms maximum.
 - Brightness-aware Forui neutral mobile touch theme selection.
+- Centralized mapping from the Forui neutral palette and typography scale into Material `ThemeData`, so mixed Forui/Material widgets share one visual source of truth.
 - Shared `AppSection` layout component.
 - Reduced-motion-aware `AppMotionScope`.
 - Centralized selection haptics with safe handling of unsupported platform channels.
@@ -38,7 +39,7 @@ Premium, restrained, neutral, calm. Use clear hierarchy, readable typography, pu
 
 ## Theme and component rules
 
-Support complete Light and Dark themes plus System preference. Resolve app brightness at the root and select the matching Forui theme centrally. Forui is the primary component system; feature screens must use shared components where a suitable component exists rather than inventing inconsistent buttons, fields, or loading indicators.
+Support complete Light and Dark themes plus System preference. Resolve app brightness at the root and select the matching Forui theme centrally. `AppTheme.materialForBrightness` maps its semantic colors and type scale into Material `ThemeData`; avoid introducing a second independent palette or typography scale. Forui is the primary component system; feature screens must use shared components where a suitable component exists rather than inventing inconsistent buttons, fields, or loading indicators.
 
 Component APIs must have clear names, predictable states, appropriate semantics, and no contradictory configuration options. Add a shared component when it has repeated use or a meaningful consistency/accessibility benefit—not simply to wrap one widget without value.
 
@@ -63,6 +64,7 @@ Review contrast, semantics, screen-reader labels, 48 logical-pixel touch targets
 ## Design review checklist
 
 - [ ] Uses centralized tokens, themes, and shared components where appropriate.
+- [ ] Material widgets inherit the centralized Forui palette and typography rather than independent defaults.
 - [ ] Light and Dark themes remain complete and legible.
 - [ ] English/LTR and Arabic/RTL layouts remain correct.
 - [ ] Text scaling, contrast, semantics, focus, and touch targets reviewed.
