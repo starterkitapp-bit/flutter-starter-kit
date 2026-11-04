@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:starter_kit/app/app_settings.dart';
 import 'package:starter_kit/app/app_settings_controller.dart';
 import 'package:starter_kit/app/app_settings_store.dart';
 
@@ -17,12 +16,7 @@ void main() {
     ).thenAnswer((_) async {});
 
     final container = ProviderContainer(
-      overrides: [
-        appSettingsStoreProvider.overrideWithValue(store),
-        appSettingsProvider.overrideWith(
-          () => AppSettingsController(),
-        ),
-      ],
+      overrides: [appSettingsStoreProvider.overrideWithValue(store)],
     );
     addTearDown(container.dispose);
 
