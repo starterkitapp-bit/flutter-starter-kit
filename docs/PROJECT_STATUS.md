@@ -22,7 +22,7 @@
 - [x] Central AppLogger with redaction before output, nested-context sanitization, error-type-only diagnostics, and injectable writer.
 - [x] Logging tests cover secret/token/email redaction, nested context, stack traces, disabled logging, and unsupported objects.
 - [x] Quality workflow passed dependency resolution, localization generation, formatting, analysis, and tests for the logging implementation (run [41926709789](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41926709789)).
-- [x] Android debug APK built successfully with formatting, analysis, and tests after the Dio networking change (run [41922332071](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41922332071)); a build after the new logging code is pending.
+- [x] Android debug APK built successfully after the logging implementation, including dependency resolution, localization generation, formatting, analysis, and tests (run [41927228830](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41927228830)).
 - [ ] iOS build on macOS/Xcode.
 
 ## Phase tracking
@@ -44,12 +44,12 @@
 
 ## Verification boundaries
 
-All repository edits and CI execution are performed through GitHub; no files or commands have been run on the user's device. The logging implementation passed formatting, analysis, and all Flutter tests (run [41926709789](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41926709789)). The latest successful Android verification before logging passed formatting, analysis, tests, and debug APK build (run [41922332071](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41922332071)); Android APK verification after logging is pending. iOS compilation has not been run; it requires macOS and Xcode.
+All repository edits and CI execution are performed through GitHub; no files or commands have been run on the user's device. The logging implementation passed formatting, analysis, and all Flutter tests (run [41926709789](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41926709789)). The latest Android verification, after logging, passed dependency resolution, localization generation, formatting, analysis, tests, and debug APK build (run [41927228830](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41927228830)). iOS compilation has not been run; it requires macOS and Xcode.
 
 The current scaffold identifier is com.starterkitapp.mobilestarterkit. The future app initialization workflow must replace it with each consuming app's own identifier.
 
 ## Next actions
 
-1. Re-run Android debug APK verification with the logging implementation included.
-2. Continue reusable storage and lifecycle infrastructure, then design-system foundations and accessibility coverage.
-3. Add iOS CI on macOS when an appropriate runner is available.
+1. Review whether a reusable storage boundary is justified by concrete consumers; avoid wrapping SharedPreferences without a real need.
+2. Define and implement only lifecycle behavior with a current consumer, with focused tests.
+3. Continue design-system foundations and accessibility coverage; add iOS CI on macOS when an appropriate runner is available.
