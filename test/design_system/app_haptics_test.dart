@@ -21,7 +21,7 @@ void main() {
     await AppHaptics.selection();
 
     expect(receivedCall?.method, 'HapticFeedback.vibrate');
-    expect(receivedCall?.arguments, <String, Object>{'type': 'selectionClick'});
+    expect(receivedCall?.arguments, 'HapticFeedbackType.selectionClick');
   });
 
   test('unsupported haptic channel does not interrupt interaction', () async {
