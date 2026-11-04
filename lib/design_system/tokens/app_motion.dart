@@ -1,4 +1,6 @@
-/// Shared motion durations and defaults.
+import 'package:flutter/widgets.dart';
+
+/// Shared motion durations and accessibility-aware timing helpers.
 abstract final class AppMotion {
   /// Short feedback and micro-interaction duration.
   static const Duration fast = Duration(milliseconds: 120);
@@ -11,4 +13,16 @@ abstract final class AppMotion {
 
   /// Maximum recommended duration for routine interface motion.
   static const Duration maximum = Duration(milliseconds: 400);
+
+  /// Whether non-essential motion should be removed or simplified.
+  static bool shouldReduceMotion(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<_AppMotionPreferences>()
+          ?.reduceMotion ??
+      (MediaQuery.disableAnimationsOf(context) ||
+          WidgetsBinding.instance.platformDispatcher.accessibilityFeatures
+              .reduceMotion);
+
+  /// Returns zero duration when the platform requests reduced motion.
+  static Duration durationFor(BuildContext context, Duration duration) =>
+      shouldReduceMotion(context) ? Duration.zero : duration;
 }

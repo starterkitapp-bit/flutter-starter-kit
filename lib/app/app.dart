@@ -5,6 +5,7 @@ import 'package:forui/forui.dart';
 import 'package:starter_kit/app/app_settings_controller.dart';
 import 'package:starter_kit/app/localization/generated/app_localizations.dart';
 import 'package:starter_kit/app/navigation/app_router.dart';
+import 'package:starter_kit/design_system/motion/app_motion_scope.dart';
 import 'package:starter_kit/design_system/theme/app_theme.dart';
 
 /// Root application widget and shared framework configuration.
@@ -34,8 +35,10 @@ class StarterKitApp extends ConsumerWidget {
       ],
       builder: (context, child) => FTheme(
         data: AppTheme.forBrightness(Theme.brightnessOf(context)),
-        child: FToaster(
-          child: FTooltipGroup(child: child ?? const SizedBox.shrink()),
+        child: AppMotionScope(
+          child: FToaster(
+            child: FTooltipGroup(child: child ?? const SizedBox.shrink()),
+          ),
         ),
       ),
     );
