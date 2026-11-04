@@ -7,8 +7,7 @@ on:
   pull_request:
   workflow_dispatch:
 
-permissions:
-  contents: write
+permissions: {}
 
 concurrency:
   group: quality-${{ github.workflow }}-${{ github.ref }}
@@ -19,6 +18,8 @@ jobs:
     name: Analyze and test
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    permissions:
+      contents: read
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -40,17 +41,6 @@ jobs:
         if: github.event_name == 'pull_request'
         run: git diff --exit-code -- pubspec.lock analysis_options.yaml lib test
 
-      - name: Persist formatter output and lockfile on main
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pubspec.lock analysis_options.yaml lib test
-          if ! git diff --cached --quiet; then
-            git commit -m "chore: apply Dart formatting and lock dependencies"
-            git push
-          fi
-
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
 
@@ -59,3 +49,45 @@ jobs:
 
       - name: Run tests
         run: flutter test
+
+      - name: Upload formatted sources and lockfile
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-output
+          path: |
+            pubspec.lock
+            analysis_options.yaml
+            lib/
+            test/
+          if-no-files-found: error
+          retention-days: 1
+
+  persist-main-output:
+    name: Persist verified formatter output and lockfile
+    needs: analyze-and-test
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Download verified output
+        uses: actions/download-artifact@v4
+        with:
+          name: quality-output
+          path: .
+
+      - name: Commit formatter output and lockfile when needed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pubspec.lock analysis_options.yaml lib test
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: apply Dart formatting and lock dependencies"
+            git push
+          fi
