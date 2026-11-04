@@ -25,6 +25,10 @@ Support complete Light and Dark themes plus System preference. System follows pl
 
 Forui is the primary component system. Use documented theme/widget APIs and explicitly select the matching Forui brightness. Use Cupertino behavior for native platform interactions where appropriate, not as a competing design system.
 
+## Localization and direction
+
+English and Arabic message resources live in `lib/app/localization/arb/`; Flutter's official `gen-l10n` generates the typed localization API into `lib/app/localization/generated/`. The root app uses the generated supported locales and delegates. Flutter derives text direction from the active locale, so Arabic uses RTL and English uses LTR. User-selectable, persisted language preference is a separate settings/bootstrap responsibility and remains pending.
+
 ## Branding and typography
 
 Brand configuration owns app identity, logo/assets, accent color, and optional font/theme overrides. Brand changes must not require Core or Design System source edits.

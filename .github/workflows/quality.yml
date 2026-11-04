@@ -34,6 +34,9 @@ jobs:
       - name: Resolve dependencies and generate lockfile
         run: flutter pub get
 
+      - name: Generate localization sources
+        run: flutter gen-l10n
+
       - name: Format Dart sources
         run: dart format .
 
@@ -88,6 +91,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add pubspec.lock analysis_options.yaml lib test
           if ! git diff --cached --quiet; then
-            git commit -m "chore: apply Dart formatting and lock dependencies"
+            git commit -m "chore: apply Dart formatting and generate localization sources"
             git push
           fi

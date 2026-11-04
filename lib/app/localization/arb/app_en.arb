@@ -1,0 +1,11 @@
+{
+  "@@locale": "en",
+  "appTitle": "Flutter Starter Kit",
+  "@appTitle": {
+    "description": "Application name shown in the app interface."
+  },
+  "homeDescription": "The reusable application foundation starts here.",
+  "@homeDescription": {
+    "description": "Short introduction shown on the starter home screen."
+  }
+}

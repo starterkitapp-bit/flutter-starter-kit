@@ -65,6 +65,9 @@ jobs:
       - name: Resolve dependencies
         run: flutter pub get
 
+      - name: Generate localization sources
+        run: flutter gen-l10n
+
       - name: Verify Dart formatting
         run: dart format --output=none --set-exit-if-changed .
 

@@ -13,9 +13,10 @@ From the repository root, use the FVM-selected SDK:
 
 1. `fvm install`
 2. `fvm flutter pub get`
-3. `fvm dart format --output=none --set-exit-if-changed .`
-4. `fvm dart analyze`
-5. `fvm flutter test`
+3. `fvm flutter gen-l10n`
+4. `fvm dart format --output=none --set-exit-if-changed .`
+5. `fvm dart analyze`
+6. `fvm flutter test`
 
 Do not use a different global Flutter version for this repository. Commit the resolved pubspec.lock after dependency resolution.
 
@@ -31,9 +32,16 @@ Do not use a different global Flutter version for this repository. Commit the re
 - Update docs and status when decisions or implementation state change.
 - Never report tests/builds as passing unless actual output has been inspected.
 
+## Localization
+
+- Edit source translations in `lib/app/localization/arb/`.
+- English is the template; every supported locale must define the same message keys.
+- Generated Dart localization sources belong in `lib/app/localization/generated/` and are produced only by Flutter's official `gen-l10n` command.
+- Do not edit generated localization files by hand.
+
 ## Continuous integration
 
-The GitHub Actions quality workflow reads the Flutter version from .fvmrc, resolves dependencies, checks formatting, runs dart analyze, and runs Flutter tests. Platform builds will be added once the native Android/iOS project scaffolds exist.
+The GitHub Actions quality workflow reads the Flutter version from .fvmrc, resolves dependencies, generates localization sources, checks formatting, runs dart analyze, and runs Flutter tests. Android/iOS scaffold and Android debug build verification are handled by the native workflow. iOS builds require macOS and Xcode.
 
 ## Windows workflow
 
