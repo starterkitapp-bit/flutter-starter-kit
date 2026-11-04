@@ -25,7 +25,22 @@ jobs:
         with:
           ref: main
 
+      - name: Confirm main still matches the successful quality run
+        id: current
+        env:
+          QUALITY_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          git fetch origin main --quiet
+          MAIN_SHA="$(git rev-parse origin/main)"
+          if [ "$MAIN_SHA" = "$QUALITY_SHA" ]; then
+            echo "matches=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "matches=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping stale quality result: main has advanced beyond $QUALITY_SHA."
+          fi
+
       - name: Set up pinned Flutter SDK
+        if: steps.current.outputs.matches == 'true'
         uses: subosito/flutter-action@v2.23.0
         with:
           flutter-version-file: .fvmrc
@@ -33,6 +48,7 @@ jobs:
           cache: true
 
       - name: Generate Android and iOS native projects
+        if: steps.current.outputs.matches == 'true'
         run: |
           if [ -d android ] && [ -d ios ]; then
             echo "Both native platform directories already exist; nothing to generate."
@@ -63,19 +79,25 @@ jobs:
           git push
 
       - name: Resolve dependencies
+        if: steps.current.outputs.matches == 'true'
         run: flutter pub get
 
       - name: Generate localization sources
+        if: steps.current.outputs.matches == 'true'
         run: flutter gen-l10n
 
       - name: Verify Dart formatting
+        if: steps.current.outputs.matches == 'true'
         run: dart format --output=none --set-exit-if-changed .
 
       - name: Analyze
+        if: steps.current.outputs.matches == 'true'
         run: dart analyze
 
       - name: Run tests
+        if: steps.current.outputs.matches == 'true'
         run: flutter test
 
       - name: Build Android debug APK
+        if: steps.current.outputs.matches == 'true'
         run: flutter build apk --debug

@@ -10,5 +10,6 @@ Notable changes to the starter kit are recorded here. This project is under acti
 - Added transport-independent core failure types and tests.
 - Added shared Dio configuration and centralized transport-failure mapping with focused tests; retries remain opt-in pending idempotency policy.
 - Added GitHub quality workflow and Android debug build workflow.
+- Guarded Android verification against stale quality runs when `main` advances.
 - Reorganized engineering documentation around architecture, design system, standards, testing, security, and platform responsibilities.
 - Verified latest quality CI for the failure taxonomy; Android APK evidence remains from the earlier foundation baseline.
