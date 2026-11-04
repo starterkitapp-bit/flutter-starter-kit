@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 @immutable
 class AppSettings {
   /// Creates application settings with platform-following defaults.
-  const AppSettings({
+  const new({
     this.themeMode = ThemeMode.system,
     this.locale,
   });
