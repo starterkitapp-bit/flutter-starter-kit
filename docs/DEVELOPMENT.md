@@ -9,15 +9,15 @@
 
 ## Local workflow
 
-After the Flutter package scaffold and pubspec.yaml are committed:
+From the repository root, use the FVM-selected SDK:
 
-1. Select the repository SDK with FVM.
-2. Resolve dependencies through FVM.
-3. Run formatting and static analysis.
-4. Run relevant automated tests.
-5. Validate Android with a configured Android toolchain.
+1. `fvm install`
+2. `fvm flutter pub get`
+3. `fvm dart format --output=none --set-exit-if-changed .`
+4. `fvm dart analyze`
+5. `fvm flutter test`
 
-Exact commands will be documented with the executable scaffold so they match the committed project structure.
+Do not use a different global Flutter version for this repository. Commit the resolved pubspec.lock after dependency resolution.
 
 ## Working agreements
 
@@ -31,12 +31,10 @@ Exact commands will be documented with the executable scaffold so they match the
 - Update docs and status when decisions or implementation state change.
 - Never report tests/builds as passing unless actual output has been inspected.
 
-## Quality gates
+## Continuous integration
 
-Intended gates: dart format --output=none --set-exit-if-changed ., dart analyze, flutter test, Android build on a suitable environment, and iOS build on macOS/Xcode.
-
-CI will be enabled after a valid Flutter package scaffold and lockfile exist. Do not add a workflow that cannot yet execute meaningful checks just to display a green badge.
+The GitHub Actions quality workflow reads the Flutter version from .fvmrc, resolves dependencies, checks formatting, runs dart analyze, and runs Flutter tests. Platform builds will be added once the native Android/iOS project scaffolds exist.
 
 ## Windows workflow
 
-Android checks can run on Windows when Android SDK/toolchain is configured. Do not claim iOS builds from Windows. The developer launches the app through VS Code; implementation scripts must not launch it automatically.
+Android checks can run on Windows when Android SDK/toolchain is configured. Do not claim iOS builds from Windows. The developer launches the app through VS Code; implementation scripts must not launch the app automatically.

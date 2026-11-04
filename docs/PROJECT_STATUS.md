@@ -6,31 +6,33 @@
 
 ## Verified repository state
 
-- [x] GitHub repository exists.
-- [x] Repository visibility is Public.
+- [x] GitHub repository exists and is Public.
 - [x] Default branch is main.
-- [x] Initial README commit exists.
 - [x] GitHub connection has repository push/admin permission.
-- [x] Initial repository contained README.md only.
-- [ ] Flutter application scaffold exists.
-- [ ] Dependencies resolved and lockfile committed.
-- [ ] SDK/toolchain validated locally.
-- [ ] Static analysis executed.
-- [ ] Automated tests executed.
+- [x] Engineering baseline and project documentation committed.
+- [x] FVM SDK pin committed (.fvmrc: Flutter 3.47.9).
+- [x] Dart package manifest and initial application entry point committed.
+- [x] Initial GoRouter route and Forui root theme integration committed.
+- [x] Initial widget test committed.
+- [x] GitHub Actions quality workflow committed.
+- [ ] Dependency resolution completed and pubspec.lock committed.
+- [ ] CI workflow completed successfully.
+- [ ] Static analysis output inspected.
+- [ ] Automated tests executed successfully.
+- [ ] Android/iOS native project scaffolds committed.
 - [ ] Android build executed.
 - [ ] iOS build executed on macOS/Xcode.
-- [ ] CI quality gates enabled and observed passing.
 
 ## Phase tracking
 
 | Phase | Scope | Status |
 |---|---|---|
 | 0 | SDK pin, dependency audit, lints, structure, config | In progress |
-| 1 | Design system, Forui, themes, brand config | Not started |
+| 1 | Design system, Forui, themes, brand config | Initial Forui root integration started |
 | 2 | Arabic/English localization and RTL | Not started |
 | 3 | Components, motion, haptics, reduced motion | Not started |
 | 4 | Gallery and accessibility validation | Not started |
-| 5 | Bootstrap, splash, navigation | Not started |
+| 5 | Bootstrap, splash, navigation | Initial GoRouter root route started |
 | 6 | Core errors/network/logging/storage/lifecycle | Not started |
 | 7 | Settings/onboarding if required | Not started |
 | 8 | Optional authentication | Not started |
@@ -38,12 +40,15 @@
 | 10 | Reference feature | Not started |
 | 11 | Second-app reuse validation | Not started |
 
-## Important distinction
+## Verification record
 
-Documentation/configuration is not implementation evidence. A quality gate is complete only after actual command/build/test output has been inspected. iOS verification requires macOS and Xcode.
+No Flutter command, dependency resolution, analyzer, test, or platform build has been executed in the user's local environment by this GitHub-only workflow. The committed CI workflow is expected to run on GitHub Actions; its result must be inspected before any quality gate is marked passed.
+
+iOS verification requires macOS and Xcode. The current repository does not yet contain generated Android/iOS native project directories.
 
 ## Pending
 
-- Create the Flutter package scaffold and resolve the candidate dependency set.
-- Confirm local FVM/Flutter/Android toolchain state before claiming environment readiness.
-- Preserve any exact canonical source wording from the separately agreed constitution if a byte-for-byte copy is required.
+1. Inspect the first GitHub Actions run and resolve any actual dependency/API/lint/test failures.
+2. Generate and commit Android/iOS native scaffolding from the pinned Flutter SDK without overwriting the authored Dart source.
+3. Add official ARB/gen-l10n resources and persisted theme/locale settings.
+4. Continue Phase 0/1 only after the foundation resolves cleanly.
