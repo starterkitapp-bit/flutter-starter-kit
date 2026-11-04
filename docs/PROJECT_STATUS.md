@@ -6,38 +6,39 @@
 
 ## Verified repository state
 
-- [x] GitHub repository exists, is Public, and uses main as its default branch.
-- [x] GitHub connection has repository push/admin permission.
+- [x] Public GitHub repository exists; default branch is main.
 - [x] Engineering constitution and core project documentation committed.
 - [x] FVM SDK pin committed (.fvmrc: Flutter 3.47.9).
-- [x] Dependency manifest resolves successfully on GitHub Actions with the pinned SDK (run 41882875527).
+- [x] Declared dependency graph resolves under the pinned SDK.
+- [x] Resolved application dependency lockfile generated and committed.
 - [x] Initial Dart application entry point, GoRouter route, Forui root integration, and widget test committed.
-- [x] GitHub Actions quality workflow committed.
-- [ ] Dart formatting gate passes on committed sources.
-- [ ] pubspec.lock generated and committed.
-- [ ] Static analysis completed successfully.
-- [ ] Automated tests completed successfully.
+- [x] Dart source formatting completed and persisted.
+- [x] Static analysis passed in GitHub Actions.
+- [x] Initial widget test passed in GitHub Actions.
+- [x] CI workflow checks formatting, analysis, and tests.
 - [ ] Android/iOS native project scaffolds committed.
 - [ ] Android build executed successfully.
 - [ ] iOS build executed on macOS/Xcode.
 
 ## Latest inspected CI evidence
 
-Workflow run [41882875527](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41882875527), commit `a5df458b8016eb3192744699bbb3fcc721b52f22`:
+Workflow run [41885720713](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41885720713):
 
 - Flutter 3.47.9 setup: passed.
-- `flutter pub get`: passed; dependency solver resolved the declared dependency graph.
-- `dart format --output=none --set-exit-if-changed .`: failed because the formatter reported changes in `lib/app/app.dart`, `lib/features/home/presentation/home_page.dart`, and `test/widget_test.dart`.
-- Static analysis and tests: skipped because the formatting step failed.
-- The generated lockfile existed only in the ephemeral CI workspace and was not committed.
+- `flutter pub get`: passed.
+- `dart format .`: passed; three previously unformatted Dart files were corrected.
+- Lockfile and formatted sources were committed by the workflow as commit `c04a9636dd72d9f868bcd5ef98a5539e64a0f47e`.
+- Formatting verification: passed.
+- `dart analyze`: passed.
+- `flutter test`: passed.
 
-The workflow has been restored to a strict formatting check. No successful analyzer, test, or platform build is currently recorded.
+The workflow run started from commit `38769a4df7878db7e94008fc19b214f9fe0a8d4b`; its persistence step created the lockfile/formatting commit before the final formatting, analysis, and test steps. Those final checks all passed in the same CI workspace after persistence. A subsequent push-triggered run will independently verify the new branch head.
 
 ## Phase tracking
 
 | Phase | Scope | Status |
 |---|---|---|
-| 0 | SDK pin, dependency audit, lints, structure, config | In progress; CI formatting issue remains |
+| 0 | SDK pin, dependency audit, lints, structure, config | In progress; CI quality gates now pass |
 | 1 | Design system, Forui, themes, brand config | Initial Forui root integration only |
 | 2 | Arabic/English localization and RTL | Not started |
 | 3 | Components, motion, haptics, reduced motion | Not started |
@@ -52,12 +53,12 @@ The workflow has been restored to a strict formatting check. No successful analy
 
 ## Verification boundaries
 
-All repository edits so far were made through GitHub. No files or commands were run on the user's device. A successful dependency resolution in a CI workspace is not the same as a committed lockfile. iOS verification requires macOS and Xcode; the repository does not yet contain generated Android/iOS native project directories.
+All repository edits and CI execution so far were performed through GitHub. No files or commands were run on the user's device. CI verifies the Dart foundation on Linux; it does not establish Android/iOS native builds. iOS verification requires macOS and Xcode. Native Android/iOS project directories are not yet committed.
 
 ## Next engineering actions
 
-1. Resolve and commit the formatter changes using the pinned Dart formatter.
-2. Persist the resolved application dependency lockfile.
-3. Obtain a green CI run covering format, analysis, and tests.
-4. Generate native Android/iOS scaffolding in GitHub CI and commit the resulting project files.
-5. Continue design-system and localization implementation only after the foundation is verified.
+1. Independently verify the latest main commit with a fresh CI run.
+2. Generate Android/iOS native scaffolding using the pinned Flutter SDK and set Android API 24 / iOS 15.0 deployment targets.
+3. Implement the centralized design tokens and complete Forui Light/Dark theme selection.
+4. Add official ARB/gen-l10n resources and persisted System/Arabic/English plus System/Light/Dark settings.
+5. Continue with components, motion, accessibility, and the remaining foundation phases.
