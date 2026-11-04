@@ -10,7 +10,7 @@
 - [x] Android and iOS native project scaffolds; Android min API 24 and iOS deployment target 15.0.
 - [x] Riverpod root, GoRouter home/settings routes, and Forui root integration.
 - [x] Central spacing, radius, and motion tokens; shared AppSection.
-- [x] Forui neutral Light/Dark theme selection.
+- [x] Forui neutral Light/Dark theme selection with a centralized Material color and typography bridge.
 - [x] Arabic/English ARB resources and official gen-l10n.
 - [x] Arabic RTL, English LTR, unsupported-locale fallback, and widget tests.
 - [x] System/Light/Dark and System/English/Arabic settings, persisted through SharedPreferencesAsync.
@@ -30,7 +30,7 @@
 | Phase | Scope | Status |
 |---|---|---|
 | 0 | SDK, dependencies, lints, structure, CI | Foundation, quality CI, and Android debug APK pass |
-| 1 | Design System, themes, brand config | Core tokens, Forui Light/Dark, and AppSection exist; semantic app color/typography extensions and brand config remain |
+| 1 | Design System, themes, brand config | Core tokens, Forui Light/Dark, centralized Material theme mapping, and AppSection exist; brand config and licensed bundled fonts remain |
 | 2 | Arabic/English, RTL, fonts | ARB/gen-l10n, runtime selection, persistence, RTL/LTR, fallback implemented; licensed bundled fonts remain |
 | 3 | Components, motion, haptics | AppSection, AppAnimatedSwitcher, reduced-motion scope, and haptics implemented; broader component library remains |
 | 4 | Gallery and accessibility | Not started |
@@ -50,6 +50,6 @@ The current scaffold identifier is com.starterkitapp.mobilestarterkit. The futur
 
 ## Next actions
 
-1. Review whether a reusable storage boundary is justified by concrete consumers; avoid wrapping SharedPreferences without a real need.
-2. Define and implement only lifecycle behavior with a current consumer, with focused tests.
-3. Continue design-system foundations and accessibility coverage; add iOS CI on macOS when an appropriate runner is available.
+1. Expand the shared component foundations only where repeated UI patterns justify them, with accessibility and RTL tests.
+2. Define and implement lifecycle behavior only when a concrete feature needs it; avoid unused infrastructure.
+3. Add iOS CI on macOS when an appropriate runner is available.
