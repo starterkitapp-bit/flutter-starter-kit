@@ -4,6 +4,8 @@ Notable changes to the starter kit are recorded here. This project is under acti
 
 ## 2026-11-05 — Unreleased
 
+- Unified Material `ThemeData` with the centralized Forui neutral Light/Dark palette and typography; added regression tests for both brightness modes. Quality checks and Android debug APK build passed (quality run [41931293879](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41931293879); Android run [41931508513](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41931508513)).
+
 - Verified the Android debug APK after the logging implementation, including dependency resolution, localization generation, formatting, analysis, and tests (run [41927228830](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41927228830)).
 - Added a dependency-free AppLogger that redacts sensitive message/context/stack-trace data before output and avoids retaining raw exception messages.
 - Added focused logging tests for credentials, personal data, nested context, disabled output, and unsupported object values.
