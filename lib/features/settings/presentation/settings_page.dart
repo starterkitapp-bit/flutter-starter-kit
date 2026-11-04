@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:starter_kit/app/app_settings_controller.dart';
 import 'package:starter_kit/app/localization/generated/app_localizations.dart';
+import 'package:starter_kit/design_system/components/app_section.dart';
 import 'package:starter_kit/design_system/tokens/app_spacing.dart';
 
 /// Allows users to choose their appearance and language preferences.
@@ -29,7 +30,8 @@ class SettingsPage extends ConsumerWidget {
                 Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: FButton(
-                    onPress: () => context.pop(),
+                    onPress: () =>
+                        context.canPop() ? context.pop() : context.go('/'),
                     child: Text(localizations.backAction),
                   ),
                 ),
@@ -39,51 +41,68 @@ class SettingsPage extends ConsumerWidget {
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: AppSpacing.xl),
-                Text(
-                  localizations.themeSectionTitle,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                FTile(
-                  title: Text(localizations.systemOption),
-                  selected: settings.themeMode == ThemeMode.system,
-                  onPress: () =>
-                      _save(() => controller.setThemeMode(ThemeMode.system)),
-                ),
-                FTile(
-                  title: Text(localizations.lightOption),
-                  selected: settings.themeMode == ThemeMode.light,
-                  onPress: () =>
-                      _save(() => controller.setThemeMode(ThemeMode.light)),
-                ),
-                FTile(
-                  title: Text(localizations.darkOption),
-                  selected: settings.themeMode == ThemeMode.dark,
-                  onPress: () =>
-                      _save(() => controller.setThemeMode(ThemeMode.dark)),
+                AppSection(
+                  title: Text(
+                    localizations.themeSectionTitle,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      FTile(
+                        title: Text(localizations.systemOption),
+                        selected: settings.themeMode == ThemeMode.system,
+                        onPress: () => _save(
+                          () => controller.setThemeMode(ThemeMode.system),
+                        ),
+                      ),
+                      FTile(
+                        title: Text(localizations.lightOption),
+                        selected: settings.themeMode == ThemeMode.light,
+                        onPress: () => _save(
+                          () => controller.setThemeMode(ThemeMode.light),
+                        ),
+                      ),
+                      FTile(
+                        title: Text(localizations.darkOption),
+                        selected: settings.themeMode == ThemeMode.dark,
+                        onPress: () => _save(
+                          () => controller.setThemeMode(ThemeMode.dark),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.xl),
-                Text(
-                  localizations.languageSectionTitle,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                FTile(
-                  title: Text(localizations.systemOption),
-                  selected: settings.locale == null,
-                  onPress: () => _save(() => controller.setLocale(null)),
-                ),
-                FTile(
-                  title: Text(localizations.englishOption),
-                  selected: settings.locale?.languageCode == 'en',
-                  onPress: () =>
-                      _save(() => controller.setLocale(const Locale('en'))),
-                ),
-                FTile(
-                  title: Text(localizations.arabicOption),
-                  selected: settings.locale?.languageCode == 'ar',
-                  onPress: () =>
-                      _save(() => controller.setLocale(const Locale('ar'))),
+                AppSection(
+                  title: Text(
+                    localizations.languageSectionTitle,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      FTile(
+                        title: Text(localizations.systemOption),
+                        selected: settings.locale == null,
+                        onPress: () => _save(() => controller.setLocale(null)),
+                      ),
+                      FTile(
+                        title: Text(localizations.englishOption),
+                        selected: settings.locale?.languageCode == 'en',
+                        onPress: () => _save(
+                          () => controller.setLocale(const Locale('en')),
+                        ),
+                      ),
+                      FTile(
+                        title: Text(localizations.arabicOption),
+                        selected: settings.locale?.languageCode == 'ar',
+                        onPress: () => _save(
+                          () => controller.setLocale(const Locale('ar')),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
