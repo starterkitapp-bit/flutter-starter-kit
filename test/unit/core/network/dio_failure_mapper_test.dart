@@ -35,10 +35,7 @@ void main() {
       expect(_exception(statusCode: 408), isA<TimeoutFailure>());
       expect(_exception(statusCode: 409), isA<ConflictFailure>());
       expect(_exception(statusCode: 503), isA<ServerFailure>());
-      expect(
-        (_exception(statusCode: 503) as ServerFailure).statusCode,
-        503,
-      );
+      expect((_exception(statusCode: 503) as ServerFailure).statusCode, 503);
     });
 
     test('preserves a numeric Retry-After value without inventing a delay', () {

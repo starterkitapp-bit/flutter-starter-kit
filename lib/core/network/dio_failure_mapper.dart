@@ -15,8 +15,8 @@ Failure mapDioException(DioException exception) {
     DioExceptionType.connectionError => const NetworkFailure(),
     DioExceptionType.cancel => const CancelledFailure(),
     DioExceptionType.badResponse => _mapResponse(exception.response),
-    DioExceptionType.badCertificate || DioExceptionType.unknown =>
-      const UnknownFailure(),
+    DioExceptionType.badCertificate ||
+    DioExceptionType.unknown => const UnknownFailure(),
   };
 }
 
