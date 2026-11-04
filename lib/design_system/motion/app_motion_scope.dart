@@ -22,9 +22,10 @@ class _AppMotionScopeState extends State<AppMotionScope>
   bool _reduceMotion = false;
 
   bool get _platformRequestsReducedMotion {
-    final features = WidgetsBinding.instance.platformDispatcher
-        .accessibilityFeatures;
-    return (MediaQuery.maybeDisableAnimationsOf(context) ?? false) || features.reduceMotion;
+    final features =
+        WidgetsBinding.instance.platformDispatcher.accessibilityFeatures;
+    return (MediaQuery.maybeDisableAnimationsOf(context) ?? false) ||
+        features.reduceMotion;
   }
 
   @override
@@ -54,10 +55,8 @@ class _AppMotionScopeState extends State<AppMotionScope>
   }
 
   @override
-  Widget build(BuildContext context) => _AppMotionPreferences(
-    reduceMotion: _reduceMotion,
-    child: widget.child,
-  );
+  Widget build(BuildContext context) =>
+      _AppMotionPreferences(reduceMotion: _reduceMotion, child: widget.child);
 }
 
 class _AppMotionPreferences extends InheritedWidget {

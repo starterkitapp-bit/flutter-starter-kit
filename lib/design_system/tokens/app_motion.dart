@@ -20,7 +20,10 @@ abstract final class AppMotion {
   static bool shouldReduceMotion(BuildContext context) =>
       AppMotionScope.maybeReduceMotionOf(context) ??
       ((MediaQuery.maybeDisableAnimationsOf(context) ?? false) ||
-          WidgetsBinding.instance.platformDispatcher.accessibilityFeatures
+          WidgetsBinding
+              .instance
+              .platformDispatcher
+              .accessibilityFeatures
               .reduceMotion);
 
   /// Returns zero duration when the platform requests reduced motion.
