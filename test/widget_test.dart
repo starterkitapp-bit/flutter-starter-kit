@@ -26,10 +26,7 @@ void main() {
 
     final title = find.text('حزمة Flutter الأساسية');
     expect(title, findsOneWidget);
-    expect(
-      Directionality.of(tester.element(title)),
-      TextDirection.rtl,
-    );
+    expect(Directionality.of(tester.element(title)), TextDirection.rtl);
     expect(
       find.text('هنا تبدأ البنية الأساسية القابلة لإعادة الاستخدام للتطبيق.'),
       findsOneWidget,
