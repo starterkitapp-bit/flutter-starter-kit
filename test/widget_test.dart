@@ -5,9 +5,7 @@ import 'package:starter_kit/app/app.dart';
 
 void main() {
   testWidgets('application opens the starter kit home route', (tester) async {
-    await tester.pumpWidget(
-      const ProviderScope(child: StarterKitApp()),
-    );
+    await tester.pumpWidget(const ProviderScope(child: StarterKitApp()));
     await tester.pumpAndSettle();
 
     expect(find.text('Flutter Starter Kit'), findsOneWidget);
