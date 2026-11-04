@@ -1,15 +1,29 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 import 'package:starter_kit/app/app.dart';
+import 'package:starter_kit/app/app_settings_controller.dart';
+import 'package:starter_kit/app/app_settings_store.dart';
+
+class MockAppSettingsStore extends Mock implements AppSettingsStore;
+
+Future<void> pumpApp(WidgetTester tester, Locale locale) async {
+  await tester.pumpWidget(
+    ProviderScope(
+      overrides: [
+        appSettingsStoreProvider.overrideWithValue(MockAppSettingsStore()),
+      ],
+      child: StarterKitApp(locale: locale),
+    ),
+  );
+  await tester.pumpAndSettle();
+}
 
 void main() {
   testWidgets('application renders the English home screen', (tester) async {
-    await tester.pumpWidget(
-      const ProviderScope(child: StarterKitApp(locale: Locale('en'))),
-    );
-    await tester.pumpAndSettle();
+    await pumpApp(tester, const Locale('en'));
 
     expect(find.text('Flutter Starter Kit'), findsOneWidget);
     expect(
@@ -20,10 +34,7 @@ void main() {
   });
 
   testWidgets('Arabic locale renders translated RTL content', (tester) async {
-    await tester.pumpWidget(
-      const ProviderScope(child: StarterKitApp(locale: Locale('ar'))),
-    );
-    await tester.pumpAndSettle();
+    await pumpApp(tester, const Locale('ar'));
 
     final title = find.text('حزمة Flutter الأساسية');
     expect(title, findsOneWidget);
@@ -36,10 +47,7 @@ void main() {
   });
 
   testWidgets('unsupported locale falls back to English', (tester) async {
-    await tester.pumpWidget(
-      const ProviderScope(child: StarterKitApp(locale: Locale('fr'))),
-    );
-    await tester.pumpAndSettle();
+    await pumpApp(tester, const Locale('fr'));
 
     expect(find.text('Flutter Starter Kit'), findsOneWidget);
     expect(find.text('حزمة Flutter الأساسية'), findsNothing);
@@ -48,10 +56,7 @@ void main() {
   testWidgets('settings route exposes theme and language choices', (
     tester,
   ) async {
-    await tester.pumpWidget(
-      const ProviderScope(child: StarterKitApp(locale: Locale('en'))),
-    );
-    await tester.pumpAndSettle();
+    await pumpApp(tester, const Locale('en'));
 
     await tester.tap(find.text('Settings'));
     await tester.pumpAndSettle();
