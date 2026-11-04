@@ -35,12 +35,7 @@ void main() {
     ).thenAnswer((_) async {});
 
     final container = ProviderContainer(
-      overrides: [
-        appSettingsStoreProvider.overrideWithValue(store),
-        appSettingsProvider.overrideWith(
-          () => AppSettingsController(),
-        ),
-      ],
+      overrides: [appSettingsStoreProvider.overrideWithValue(store)],
     );
     addTearDown(container.dispose);
 
