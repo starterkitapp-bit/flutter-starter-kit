@@ -19,8 +19,10 @@
 - [x] Transport-independent Failure taxonomy for network, timeout, auth/permission, validation, conflict, rate limit, server, cancellation, and unknown cases.
 - [x] Central Dio client factory with bounded timeouts and environment-supplied base URL.
 - [x] Dio exception mapping to the central Failure taxonomy, including safe HTTP status and numeric Retry-After handling.
-- [x] Quality workflow passed dependency resolution, localization generation, formatting, analysis, and tests on the current baseline (run [41922094048](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41922094048)).
-- [x] Android debug APK built successfully with formatting, analysis, and tests on the current baseline (run [41922332071](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41922332071)).
+- [x] Central AppLogger with redaction before output, nested-context sanitization, error-type-only diagnostics, and injectable writer.
+- [x] Logging tests cover secret/token/email redaction, nested context, stack traces, disabled logging, and unsupported objects.
+- [x] Quality workflow passed dependency resolution, localization generation, formatting, analysis, and tests for the logging implementation (run [41926709789](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41926709789)).
+- [x] Android debug APK built successfully with formatting, analysis, and tests after the Dio networking change (run [41922332071](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41922332071)); a build after the new logging code is pending.
 - [ ] iOS build on macOS/Xcode.
 
 ## Phase tracking
@@ -33,7 +35,7 @@
 | 3 | Components, motion, haptics | AppSection, AppAnimatedSwitcher, reduced-motion scope, and haptics implemented; broader component library remains |
 | 4 | Gallery and accessibility | Not started |
 | 5 | Bootstrap, splash, navigation | Settings load before runApp and home/settings routes exist; custom splash/deep-link validation remain |
-| 6 | Core infrastructure | Failure taxonomy, Dio client configuration, and Dio-to-Failure mapping implemented; safe logging and reusable storage/lifecycle remain |
+| 6 | Core infrastructure | Failure taxonomy, Dio client, failure mapping, and redacted AppLogger implemented; reusable storage and lifecycle remain |
 | 7 | Settings/onboarding | Theme/language settings implemented; onboarding remains optional |
 | 8 | Optional authentication | Not started |
 | 9 | App template/init workflow, flavors, recipes | Not started |
@@ -42,12 +44,12 @@
 
 ## Verification boundaries
 
-All repository edits and CI execution are performed through GitHub; no files or commands have been run on the user's device. The latest quality workflow passed formatting, analysis, and tests (run [41922094048](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41922094048)). The latest Android verification workflow passed formatting, analysis, tests, and debug APK build (run [41922332071](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41922332071)). iOS compilation has not been run; it requires macOS and Xcode.
+All repository edits and CI execution are performed through GitHub; no files or commands have been run on the user's device. The logging implementation passed formatting, analysis, and all Flutter tests (run [41926709789](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41926709789)). The latest successful Android verification before logging passed formatting, analysis, tests, and debug APK build (run [41922332071](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41922332071)); Android APK verification after logging is pending. iOS compilation has not been run; it requires macOS and Xcode.
 
 The current scaffold identifier is com.starterkitapp.mobilestarterkit. The future app initialization workflow must replace it with each consuming app's own identifier.
 
 ## Next actions
 
-1. Add and verify safe structured logging with redaction before output.
-2. Continue design-system foundations, accessibility coverage, bootstrap, and reusable app initialization work.
+1. Re-run Android debug APK verification with the logging implementation included.
+2. Continue reusable storage and lifecycle infrastructure, then design-system foundations and accessibility coverage.
 3. Add iOS CI on macOS when an appropriate runner is available.
