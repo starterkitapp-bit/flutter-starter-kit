@@ -7,9 +7,12 @@ import 'package:starter_kit/design_system/motion/app_motion_scope.dart';
 void main() {
   testWidgets('renders its child with a fade transition', (tester) async {
     await tester.pumpWidget(
-      const AppMotionScope(
-        child: AppAnimatedSwitcher(
-          child: Text('First', key: ValueKey<String>('first')),
+      const Directionality(
+        textDirection: TextDirection.ltr,
+        child: AppMotionScope(
+          child: AppAnimatedSwitcher(
+            child: Text('First', key: ValueKey<String>('first')),
+          ),
         ),
       ),
     );
@@ -20,11 +23,14 @@ void main() {
 
   testWidgets('respects reduced-motion preferences', (tester) async {
     await tester.pumpWidget(
-      MediaQuery(
-        data: const MediaQueryData(disableAnimations: true),
-        child: const AppMotionScope(
-          child: AppAnimatedSwitcher(
-            child: Text('Content', key: ValueKey<String>('content')),
+      const Directionality(
+        textDirection: TextDirection.ltr,
+        child: MediaQuery(
+          data: MediaQueryData(disableAnimations: true),
+          child: AppMotionScope(
+            child: AppAnimatedSwitcher(
+              child: Text('Content', key: ValueKey<String>('content')),
+            ),
           ),
         ),
       ),
