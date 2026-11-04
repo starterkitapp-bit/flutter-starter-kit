@@ -8,6 +8,11 @@ class AppMotionScope extends StatefulWidget {
   /// The subtree that consumes motion preferences.
   final Widget child;
 
+  /// Returns the reduced-motion preference exposed by the nearest scope.
+  static bool? maybeReduceMotionOf(BuildContext context) => context
+      .dependOnInheritedWidgetOfExactType<_AppMotionPreferences>()
+      ?.reduceMotion;
+
   @override
   State<AppMotionScope> createState() => _AppMotionScopeState();
 }

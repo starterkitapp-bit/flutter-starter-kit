@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
 
+import 'package:starter_kit/design_system/motion/app_motion_scope.dart';
+
 /// Shared motion durations and accessibility-aware timing helpers.
 abstract final class AppMotion {
   /// Short feedback and micro-interaction duration.
@@ -16,8 +18,7 @@ abstract final class AppMotion {
 
   /// Whether non-essential motion should be removed or simplified.
   static bool shouldReduceMotion(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<_AppMotionPreferences>()
-          ?.reduceMotion ??
+      AppMotionScope.maybeReduceMotionOf(context) ??
       (MediaQuery.disableAnimationsOf(context) ||
           WidgetsBinding.instance.platformDispatcher.accessibilityFeatures
               .reduceMotion);
