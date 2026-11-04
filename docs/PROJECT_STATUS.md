@@ -15,14 +15,17 @@
 - [x] iOS deployment target configured to 15.0.
 - [x] Android debug APK build passed for the native scaffold and localization baseline (runs 41887018234 and 41888496679).
 - [x] Central spacing, radius, and motion tokens implemented.
+- [x] Shared `AppSection` layout component implemented and used by the settings screen.
 - [x] Central Forui neutral mobile Light/Dark theme selection implemented.
 - [x] English and Arabic ARB resources and official Flutter gen-l10n committed.
 - [x] Arabic RTL, English LTR, and English fallback for unsupported locales covered by widget tests.
 - [x] System/Light/Dark and System/English/Arabic settings UI implemented.
 - [x] Theme and language preferences persist through SharedPreferencesAsync and load before runApp.
 - [x] Settings store/controller unit tests and settings route widget test pass.
-- [x] Latest quality workflow passed formatting, localization generation, dart analyze with zero issues, and all tests (run 41890143955).
+- [x] Latest quality workflow passed formatting, localization generation, `dart analyze` with zero issues, and all tests (run 41892990371).
 - [x] Android debug APK build passed after settings implementation (run 41890374818).
+- [x] Android debug APK build passed after the shared section component (run 41892054112).
+- [x] Reduced-motion scope/helper implemented for Android disable-animations and iOS Reduce Motion; tests cover reduced/normal durations and live iOS preference changes.
 - [ ] iOS build executed on macOS/Xcode.
 
 ## Latest inspected CI evidence
@@ -31,7 +34,7 @@
 - [Android build with localization and fallback](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41888496679): passed.
 - [Settings implementation quality run](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41890143955): passed dependency resolution, gen-l10n, formatting, analyzer, and tests.
 - [Android build with settings implementation](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41890374818): passed, including dependency resolution, gen-l10n, formatting, analysis, tests, and APK build.
-- [Latest quality workflow](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41890907092): passed analysis, formatting, and all tests.
+- [Latest quality workflow](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41892990371): passed formatting, analysis, and all tests, including reduced-motion tests.
 
 iOS compilation has not been run because it requires macOS and Xcode.
 
@@ -40,9 +43,9 @@ iOS compilation has not been run because it requires macOS and Xcode.
 | Phase | Scope | Status |
 |---|---|---|
 | 0 | SDK pin, dependency audit, lints, structure, config | Foundation committed; quality CI and Android debug APK build pass after settings |
-| 1 | Design system, Forui, themes, brand config | Spacing/radius/motion tokens and centralized Forui Light/Dark selection implemented; semantic color/typography tokens and brand configuration remain |
+| 1 | Design system, Forui, themes, brand config | Spacing/radius/motion tokens, centralized Forui Light/Dark selection, and shared AppSection layout implemented; semantic color/typography tokens and brand configuration remain |
 | 2 | Arabic/English localization and RTL | ARB/gen-l10n, runtime language selection, persistence, RTL/LTR, and English fallback implemented |
-| 3 | Components, motion, haptics, reduced motion | Motion reference tokens only; shared components, haptics, and reduced-motion behavior remain |
+| 3 | Components, motion, haptics, reduced motion | Motion tokens, Android/iOS reduced-motion scope, duration helper, and tests implemented; haptics and shared transition recipes remain |
 | 4 | Gallery and accessibility validation | Not started |
 | 5 | Bootstrap, splash, navigation | Settings are loaded before runApp with recovery to System defaults; home/settings routes exist; custom splash and deep-link validation remain |
 | 6 | Core errors/network/logging/storage/lifecycle | App-specific settings persistence exists; reusable core infrastructure remains |
@@ -60,7 +63,6 @@ The generated starter bundle identifier is `com.starterkitapp.mobilestarterkit`.
 
 ## Next engineering actions
 
-1. Expand the shared component foundation using Forui as the canonical visual source.
-2. Implement reduced-motion handling, purposeful transitions, and haptics.
-3. Add robust reusable core error/network/logging/lifecycle infrastructure.
-4. Continue accessibility validation, bootstrap/splash refinement, CI hardening, and remaining phases.
+1. Add purposeful shared transition recipes and centralized haptics.
+2. Build reusable core error taxonomy and Dio/network infrastructure.
+3. Continue accessibility validation, bootstrap/splash refinement, CI hardening, and remaining phases.
