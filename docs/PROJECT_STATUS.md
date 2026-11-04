@@ -19,8 +19,7 @@
 - [x] Transport-independent Failure taxonomy for network, timeout, auth/permission, validation, conflict, rate limit, server, cancellation, and unknown cases.
 - [x] Central Dio client factory with bounded timeouts and environment-supplied base URL.
 - [x] Dio exception mapping to the central Failure taxonomy, including safe HTTP status and numeric Retry-After handling.
-- [x] Previous quality workflow passed formatting, analysis, and tests before the Dio networking change (run [41920829873](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41920829873)).
-- [ ] Quality CI for the Dio networking change.
+- [x] Latest quality workflow passed dependency resolution, localization generation, formatting, analysis, and tests after the Dio networking and CI guard changes (run [41921668497](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41921668497)).
 - [ ] Android APK build rerun after the Failure taxonomy and Dio networking changes.
 - [ ] iOS build on macOS/Xcode.
 
@@ -43,7 +42,7 @@
 
 ## Verification boundaries
 
-All repository edits and CI execution are performed through GitHub; no files or commands have been run on the user's device. The latest quality run before the Dio networking change passed formatting, analysis, and tests. The new network client and mapper require a fresh CI run. Android debug APK evidence predates the Failure taxonomy and Dio networking changes and must be refreshed. iOS compilation has not been run; it requires macOS and Xcode.
+All repository edits and CI execution are performed through GitHub; no files or commands have been run on the user's device. The latest quality workflow passed formatting, analysis, and tests after the Dio networking change. The Android verification workflow has passed formatting, analysis, and tests on the updated code; the debug APK build is still running (run [41921610821](https://github.com/starterkitapp-bit/flutter-starter-kit/actions/runs/41921610821)). iOS compilation has not been run; it requires macOS and Xcode. iOS compilation has not been run; it requires macOS and Xcode.
 
 The current scaffold identifier is com.starterkitapp.mobilestarterkit. The future app initialization workflow must replace it with each consuming app's own identifier.
 
