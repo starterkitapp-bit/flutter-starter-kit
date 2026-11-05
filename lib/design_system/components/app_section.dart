@@ -25,7 +25,7 @@ class AppSection extends StatelessWidget {
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: <Widget>[
-      title,
+      Semantics(header: true, child: title),
       if (description case final description?) ...<Widget>[
         const SizedBox(height: AppSpacing.xs),
         description,
